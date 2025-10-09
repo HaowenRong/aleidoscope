@@ -1,0 +1,42 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+
+.image-board {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-items: center;
+  margin: 1rem;
+}
+
+.image-card-button {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.image-card {
+  width: 100%;
+  height: 16rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+} .image-card img {
+  transition: transform 0.1s ease;
+} .image-card img:hover {
+  transform: scale(1.2);
+}
