@@ -1,6 +1,6 @@
 import '../../styles/globals.css';
 import '../../styles/components.css'
-
+import '../../styles/layout.css'
 import ImageBoard from '@/components/ImageBoard';
 
 const images = [
@@ -22,12 +22,12 @@ const images = [
 ]
 
 
-export default function Home() {
+export default function Board() {
   return (
     <main className='main'>
-
-      <ImageBoard images={images} />
-
+      <div className='content'>
+        <ImageBoard images={images}/>
+      </div>
     </main>
   );
 }

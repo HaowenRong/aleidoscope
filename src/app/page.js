@@ -1,8 +1,6 @@
 import '../styles/globals.css';
 import '../styles/components.css'
-
-import PictureViewer from '@/components/PictureViewer';
-import ImageCard     from '@/components/ImageCard';
+import '../styles/layout.css'
 import ImageBoard from '@/components/ImageBoard';
 
 const images = [
@@ -27,9 +25,9 @@ const images = [
 export default function Home() {
   return (
     <main className='main'>
-      
-      <PictureViewer frames={images} />
-
+      <div className='content'>
+        <ImageBoard images={images}/>
+      </div>
     </main>
   );
 }

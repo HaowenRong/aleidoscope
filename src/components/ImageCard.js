@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 import '../styles/board.css'
@@ -9,6 +9,23 @@ import ButtonClose from './ButtonClose'
 
 export default function ImageCard({ src, alt='alt', images}) {
   const [selectedImage, displayImage] = useState(null)
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        displayImage(null)
+      }
+    }
+
+    if (selectedImage) {
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [selectedImage])
+
 
   return (
     <>

@@ -4,11 +4,15 @@ export const metadata = {
   description: '...',
 };
 
+import NaviBar from "@/components/NaviBar";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
-      
+      <body>
+        <NaviBar />
+        {children}
+      </body>
     </html>
   );
 }
