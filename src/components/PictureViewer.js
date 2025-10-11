@@ -9,7 +9,7 @@ export default function PictureViewer({ frames }) {
       {frames.map((src, i) => (
         <div key={i} className="slide">
           <PictureFrame
-            title="Picture"
+            title="Picture title..."
             imageSrc={src}
             imageAlt={`image ${i + 1}`}
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat. Curabitur facilisis neque vitae tempus placerat..."

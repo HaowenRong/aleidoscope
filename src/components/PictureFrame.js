@@ -9,14 +9,22 @@ export default function PictureFrame({ title, imageSrc, imageAlt, description })
         <h1 className="text">{title}</h1>
       </div>
       <div className="picture-container">
-        <div className="picture">
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            fill
-            style={{ objectFit: 'contain' }}
-          />
-        </div>
+        <Image
+          
+          src={imageSrc}
+          alt={imageAlt}
+          width={1000}
+          height={1000}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
+            height: 'auto',
+            width: 'auto',
+            objectFit: 'contain',
+            display: 'block'
+          }}
+
+        />
         <div className="picture-desc">
           <div className="text">
             {description}
