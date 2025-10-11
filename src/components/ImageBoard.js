@@ -7,7 +7,13 @@ export default function ImageBoard({ images }) {
   return (
     <div className="image-board">
       {images.map((src, i) => (
-        <ImageCard src={src} images={images} />
+        <ImageCard
+          key={i}
+          index={i}
+          src={src}
+          alt={`Image ${i + 1}`}
+          images={images}
+        />
       ))}
     </div>
   )

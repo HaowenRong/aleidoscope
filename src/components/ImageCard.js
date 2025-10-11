@@ -7,45 +7,48 @@ import '../styles/board.css'
 import PictureViewer from './PictureViewer'
 import ButtonClose from './ButtonClose'
 
-export default function ImageCard({ src, alt='alt', images}) {
-  const [selectedImage, displayImage] = useState(null)
+export default function ImageCard({ src, alt = 'alt', images, index }) {
+  const [selectedIndex, setSelectedIndex] = useState(null)
 
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key === 'Escape') {
-        displayImage(null)
+        setSelectedIndex(null)
       }
     }
 
-    if (selectedImage) {
+    if (selectedIndex !== null) {
       document.addEventListener('keydown', handleKeyDown)
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [selectedImage])
-
+  }, [selectedIndex])
 
   return (
     <>
       <button
         className='image-card-button'
-        onClick={() => displayImage('a')}>
-
+        onClick={() => setSelectedIndex(index)}
+      >
         <div className='image-card'>
-          <Image src={src} alt={alt} fill
-                style={{ objectFit: 'cover' }}
-          />
+          <Image src={src} alt={alt} fill style={{ objectFit: 'cover' }} />
         </div>
       </button>
-      {selectedImage && (
-        <div className='overlay' onClick={() => displayImage(null)}>
+
+      {selectedIndex !== null && (
+        <div className='overlay' onClick={() => setSelectedIndex(null)}>
           <ButtonClose />
           <div onClick={(e) => e.stopPropagation()} />
-          <PictureViewer frames={images} />
+          <PictureViewer
+            frames={images}
+            startIndex={selectedIndex}
+          />
         </div>
       )}
     </>
   )
 }
+
+

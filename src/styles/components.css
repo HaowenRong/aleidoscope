@@ -28,6 +28,11 @@
   flex-wrap: nowrap;
   height: 90dvh;
   z-index: 2;
+  transition:
+    width 0.4s ease,
+    height 0.4s ease,
+    top 0.4s ease,
+    left 0.4s ease;
 }
 
 .picture-title {
@@ -59,7 +64,6 @@
 } .picture-container .picture-desc {
   width: auto;
   max-width: 25rem;
-  min-width: 20rem;
   height: auto;
   display: flex;
   flex-direction: column;
