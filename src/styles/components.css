@@ -1,7 +1,7 @@
 .main {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-satoshi), Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   width: 100%;
   background: #FFFFFFFF;
