@@ -1,11 +1,11 @@
 'use client'
 
-import ImageCard from "./ImageCard"
+import ImageCard from './ImageCard'
 import '../styles/board.css'
 
 export default function ImageBoard({ images }) {
   return (
-    <div className="image-board">
+    <div className='image-board'>
       {images.map((src, i) => (
         <ImageCard
           key={i}

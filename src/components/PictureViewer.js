@@ -17,14 +17,14 @@ export default function PictureViewer({ frames, startIndex = 0 }) {
   }, [startIndex, frames])
 
   return (
-    <div className="slider" ref={sliderIndexes}>
+    <div className='slider' ref={sliderIndexes}>
       {frames.map((src, i) => (
-        <div key={i} className="slide">
+        <div key={i} className='slide'>
           <PictureFrame
             title={`Picture`}
             imageSrc={src}
             imageAlt={`image ${i + 1}`}
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat..."
+            description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat...'
           />
         </div>
       ))}

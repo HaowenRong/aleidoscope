@@ -1,0 +1,103 @@
+.picture-stream {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  gap: 1dvh;
+  align-items: center;
+  align-content: stretch;
+  justify-content: center;
+  margin-top: 6rem;
+  flex-direction: column;
+  padding: 1dvh;
+}
+
+.stream-picture-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: row;
+  height: auto;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  transition:
+    width 0.4s ease,
+    height 0.4s ease,
+    top 0.4s ease,
+    left 0.4s ease,
+    box-shadow 0.1s ease;
+  padding: 0.5rem;
+  cursor: pointer;
+} .stream-picture-frame:hover {
+  box-shadow: 2px 2px 0.8rem rgb(50, 42, 64);
+} .stream-picture-frame.right {
+  flex-direction: row-reverse;
+} .stream-picture-frame .image-container {
+  height: 100%;
+  width: 60%;
+  max-height: 50dvh;
+} .stream-picture-frame .image-container img {
+  border-radius: 0.35rem;
+} .stream-picture-frame .info-section {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+} .stream-picture-frame .info-section .title {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+} .stream-picture-frame .info-section .title.right {
+  justify-content: flex-end;
+} .stream-picture-frame .info-section .title .text {
+  all: unset;
+  font-size: xx-large;
+  color: black;
+} .stream-picture-frame .info-section .title .text.right {
+  text-align: right;
+} .stream-picture-frame .info-section .desc {
+  all: unset;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+} .stream-picture-frame .info-section .desc .text {
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+  color: black;
+} .stream-picture-frame .info-section .desc .text.right {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .picture-stream {
+    gap: 2dvh;
+    padding: 0;
+    margin-top: 5dvh;
+  }
+
+  .stream-picture-frame {
+    padding: 0;
+    border-radius: 0;
+    border-bottom: solid 2px;
+    padding-bottom: 2dvh;
+    flex-direction: column;
+  } .stream-picture-frame.right {
+    flex-direction: column;
+  }.stream-picture-frame:hover {
+  box-shadow: none;
+  } .stream-picture-frame .image-container {
+    width: 100%;
+  } .stream-picture-frame .info-section {
+    width: 100%;
+  }
+}
