@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import '../styles/layout.css'
 
 export default function NaviBar() {
@@ -9,17 +10,17 @@ export default function NaviBar() {
         <h1>AAAAaaaa</h1>
 
         <div className='options-row'>
-          <button className='option'>
-            <h3>AAAA</h3>
-          </button>
+          <Link href='/photo-stream' className='option'>
+            <h3>Highlights</h3>
+          </Link>
 
-          <button className='option'>
-            <h3>BBBB</h3>
-          </button>
+          <Link href='/album' className='option'>
+            <h3>Albums</h3>
+          </Link>
 
-          <button className='option'>
-            <h3>CCCC</h3>
-          </button>
+          <Link href='/board' className='option'>
+            <h3>About</h3>
+          </Link>
         </div>
       </div>
     </div>

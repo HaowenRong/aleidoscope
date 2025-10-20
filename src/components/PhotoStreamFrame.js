@@ -1,12 +1,13 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
 
 export default function PhotoStreamFrame({ title, imageSrc, imageAlt, description, alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
   return (
-    <div className={`stream-picture-frame ${align}`}>
+    <Link href='/' className={`stream-picture-frame ${align}`}>
       <div className='image-container'>
         <Image
           src={imageSrc}
@@ -34,6 +35,6 @@ export default function PhotoStreamFrame({ title, imageSrc, imageAlt, descriptio
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

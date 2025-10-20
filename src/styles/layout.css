@@ -23,7 +23,7 @@
 .navi-bar {
   display: flex;
   height: 4rem;
-  width: 60dvw;
+  width: 70dvw;
   border-radius: 0.5rem;
   align-items: center;
   justify-content: space-between;
@@ -38,9 +38,10 @@
   all: unset;
   font-size: larger;
   font-weight: bold;
-  margin-left: 4rem;
   user-select: none;
   color: aliceblue;
+  width: 100%;
+  text-align: center;
 } .navi-bar .options-row {
   display: flex;
   height: 100%;
@@ -53,8 +54,8 @@
   border-color: darkgray;
   display: flex;
   align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 3dvw;
+  padding-right: 3dvw;
 } .navi-bar .options-row .option:hover {
   background-color: rgba(255, 255, 255, 0.050);
 } .navi-bar .options-row .option h3 {

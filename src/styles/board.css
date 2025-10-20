@@ -15,6 +15,12 @@
 }
 
 
+.album-title {
+  width: 100%;
+  border-bottom: solid 2px;
+  margin-bottom: 1rem;
+}
+
 .image-board {
   display: grid;
   gap: 1rem;
