@@ -18,7 +18,7 @@ export default function NaviBar() {
             <h3>Albums</h3>
           </Link>
 
-          <Link href='/board' className='option'>
+          <Link href='/about' className='option'>
             <h3>About</h3>
           </Link>
         </div>

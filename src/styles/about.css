@@ -1,0 +1,11 @@
+.about-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+} .about-title {
+  width: 100%;
+  border-bottom: solid 1px;
+  margin-bottom: 1rem;
+} .about-desc {
+  width: 100%;
+}
