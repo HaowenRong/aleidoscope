@@ -3,11 +3,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function PhotoStreamFrame({ title, imageSrc, imageAlt, description, alignment='left' }) {
+export default function PhotoStreamFrame({ title, imageSrc, imageAlt, description, albumLink='', alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
+
   return (
-    <Link href='/' className={`stream-picture-frame ${align}`}>
+    <Link href={albumLink} className={`stream-picture-frame ${align}`}>
       <div className='image-container'>
         <Image
           src={imageSrc}

@@ -22,12 +22,14 @@ export default function PhotoStream() {
           imageSrc={images[0]}
           imageAlt='img'
           description='This is a description'
+          albumLink='/album/album1'
         />
         <PhotoStreamFrame
           title='Title'
           imageSrc={images[2]}
           imageAlt='img'
           description='This is a description'
+          albumLink='/album/album2'
           alignment='right'
         />
         <PhotoStreamFrame
@@ -35,6 +37,7 @@ export default function PhotoStream() {
           imageSrc={images[4]}
           imageAlt='img'
           description='This is a description'
+          albumLink='/album/album3'
         />
       </div>
     </main>
