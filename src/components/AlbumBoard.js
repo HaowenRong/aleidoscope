@@ -10,27 +10,51 @@ import ImageBoard from '@/components/ImageBoard';
 
 const albums = {
   'album1': [
-    '/media/DSC00235_05.jpg',
-    '/media/DSC07672.jpg',
-    '/media/DSC07929.jpg',
-    '/media/DSC07557.jpg',
-    '/media/DSC07009.jpg'
+    '/media/20240403_194554.jpg',
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg',
+    '/media/20240403_194554.jpg',
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg',
+    '/media/20240403_194554.jpg',
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg',
+    '/media/20240403_194554.jpg',
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg',
+    '/media/20240403_194554.jpg',
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg',
+    '/media/20240403_194554.jpg',
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg'
   ],
   'album2': [
-    '/media/DSC07672.jpg',
-    '/media/DSC07929.jpg',
-    '/media/DSC07557.jpg',
-    '/media/DSC07009.jpg'
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg',
+    '/media/DSC04579.jpg'
   ],
   'album3': [
-    '/media/DSC00235_05.jpg',
-    '/media/DSC07672.jpg',
-    '/media/DSC07929.jpg',
-    '/media/DSC07557.jpg'
+    '/media/DSC02989_03.jpg',
+    '/media/DSC03063.jpg',
+    '/media/DSC04020.jpg'
   ]
 }
 
-export default function AlbumBoard({album=''}) {
+export default function AlbumBoard({album='', description='', date='', numPhotos='0'}) {
   if (album === '') {
     const urlParams = useParams()
     album = urlParams.album
@@ -48,7 +72,16 @@ export default function AlbumBoard({album=''}) {
 
   return (
     <div className='album-board-container'>
-      <h1 className='album-title'>{album}</h1>
+      <div className='album-header'>
+        <div className='context-section'>
+          <h1 className='album-title'>{album}</h1>
+          <p>{description}</p>
+        </div>
+        <div className='info-section'>
+          <h3 className='album-info'>{date}</h3>
+          <h3 className='album-info'>{numPhotos} Photos</h3>
+        </div>
+      </div>
       <ImageBoard images={albums[album]}/>
     </div>
     

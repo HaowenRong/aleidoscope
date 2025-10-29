@@ -22,15 +22,15 @@
 }
 .navi-bar {
   display: flex;
-  height: 4rem;
-  width: 70dvw;
+  height: 3rem;
+  width: 90dvw;
   border-radius: 0.5rem;
   align-items: center;
   justify-content: space-between;
   margin: 1rem;
   backdrop-filter: saturate(200%);
-  background-color: rgba(20, 34, 45, 0.7);
-  box-shadow: 2px -2px 20px rgb(50, 42, 64);
+  background-color: rgba(30, 35, 35, 0.7);
+  box-shadow: 1px 1px 10px rgb(50, 42, 64);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 } .navi-bar h1 {
@@ -41,7 +41,8 @@
   user-select: none;
   color: aliceblue;
   width: 100%;
-  text-align: center;
+  text-align: start;
+  padding-left: 2rem;
 } .navi-bar .options-row {
   display: flex;
   height: 100%;
@@ -55,8 +56,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 3dvw;
-  padding-right: 3dvw;
+  padding-left: 3rem;
+  padding-right: 3rem;
 } .navi-bar .options-row .option:hover {
   background-color: rgba(255, 255, 255, 0.050);
 } .navi-bar .options-row .option h3 {

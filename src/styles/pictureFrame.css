@@ -43,7 +43,7 @@
   align-items: start;
   gap: 0.5rem;
 } .picture-container img {
-  border-radius: 0.2rem;
+  border-radius: 0.25rem;
 } .picture-container .picture-desc {
   width: auto;
   max-width: 25rem;

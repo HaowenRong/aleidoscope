@@ -3,7 +3,7 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  gap: 1dvh;
+  gap: 0.5dvh;
   align-items: center;
   align-content: stretch;
   justify-content: center;
@@ -32,7 +32,7 @@
   padding: 0.5rem;
   cursor: pointer;
 } .stream-picture-frame:hover {
-  box-shadow: 2px 2px 0.8rem rgb(50, 42, 64);
+  box-shadow: 2px 2px 0.6rem rgb(50, 42, 64);
 } .stream-picture-frame.right {
   flex-direction: row-reverse;
 } .stream-picture-frame .image-container {
