@@ -9,7 +9,7 @@
   align-items: center;
   align-content: stretch;
   justify-content: center;
-  padding: 0px 10dvw 50px 10dvw;
+  padding: 0px 5dvw 50px 5dvw;
   flex-direction: column;
 }
 
@@ -79,7 +79,7 @@
 
   .navi-bar {
     width: 100%;
-    height: 5dvh;
+    height: 3rem;
     justify-content: space-evenly;
     border-radius: 0.3rem;
     margin: 0;

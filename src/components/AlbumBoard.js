@@ -30,9 +30,12 @@ const albums = {
   ]
 }
 
-export default function AlbumBoard() {
-  const urlParams = useParams()
-  const album = urlParams.album
+export default function AlbumBoard({album=''}) {
+  if (album === '') {
+    const urlParams = useParams()
+    album = urlParams.album
+  }
+
   console.log(album)
   console.log(albums)
 
@@ -44,8 +47,8 @@ export default function AlbumBoard() {
   }
 
   return (
-    <div>
-      <h1 className='album-title'>{urlParams.album}</h1>
+    <div className='album-board-container'>
+      <h1 className='album-title'>{album}</h1>
       <ImageBoard images={albums[album]}/>
     </div>
     
