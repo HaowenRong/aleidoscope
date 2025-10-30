@@ -8,18 +8,9 @@ export default function Albums() {
   return (
     <main className='main'>
       <div className='content'>
-        <AlbumBoard album='album1'
-                    description='Album Desc.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat...'
-                    date='2000/10/20'
-                    numPhotos='20'/>
-        <AlbumBoard album='album2'
-                    description='Album Desc.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat...'
-                    date='2002/10/20'
-                    numPhotos='30'/>
-        <AlbumBoard album='album3'
-                    description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat...'
-                    date='2004/10/20'
-                    numPhotos='40'/>
+        <AlbumBoard album='album1' />
+        <AlbumBoard album='album2' />
+        <AlbumBoard album='album3' />
       </div>
     </main>
   );
