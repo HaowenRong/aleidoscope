@@ -5,37 +5,24 @@ import '../../styles/photoStream.css'
 
 import PhotoStreamFrame from '@/components/PhotoStreamFrame';
 
-const images = [
-  '/media/DSC00235_05.jpg',
-  '/media/DSC07672.jpg',
-  '/media/DSC07929.jpg',
-  '/media/DSC07557.jpg',
-  '/media/DSC07009.jpg'
-]
-
 export default function PhotoStream() {
   return (
     <main className='main'>
       <div className='picture-stream'>
         <PhotoStreamFrame
-          title='Title'
-          imageSrc={images[0]}
-          imageAlt='img'
-          description='This is a description'
+          album='album1'
+          imageAlt='img2'
           albumLink='/album/album1'
         />
         <PhotoStreamFrame
-          title='Title'
-          imageSrc={images[2]}
-          imageAlt='img'
-          description='This is a description'
+          album='album2'
+          imageAlt='img2'
           albumLink='/album/album2'
           alignment='right'
         />
         <PhotoStreamFrame
-          title='Title'
-          imageSrc={images[4]}
-          imageAlt='img'
+          album='album3'
+          imageAlt='img3'
           description='This is a description'
           albumLink='/album/album3'
         />
