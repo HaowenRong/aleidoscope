@@ -23,7 +23,6 @@ export default function PhotoStream() {
         <PhotoStreamFrame
           album='album3'
           imageAlt='img3'
-          description='This is a description'
           albumLink='/album/album3'
         />
       </div>
