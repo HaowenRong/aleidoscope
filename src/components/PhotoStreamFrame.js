@@ -1,4 +1,5 @@
 import { lookupAlbum } from '@/app/api/jsonReader.mjs'
+import AlbumHeader from './AlbumHeader'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -10,22 +11,17 @@ export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', 
   // return error if no album found
   if (!albumData) {
     return <div href={albumLink} className={`stream-picture-frame ${align}`}>
-              <div className='image-container' />
-              
-              <div className='info-section'>
-                <div className={`title ${align}`}>
-                  <h1 className='text'>Error loading album</h1>
-                </div>
-                <div className='desc'>
-                  <p className={`text ${align}`}>
-                    Unable to retrieve album data
-                  </p>
-                </div>
-              </div>
+              <AlbumHeader
+                title='Error loading album'
+                desc='Unable to retrieve album data'
+                date=''
+                photos=''
+                textAlignment={align}
+              />
             </div>
   }
 
-  const { albumName, description, images: albumPhotos,coverPhoto, date } = albumData
+  const { albumName, description, images: albumPhotos, coverPhoto, date } = albumData
   const numPhotos = albumPhotos.length
 
   return (
@@ -44,28 +40,18 @@ export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', 
             objectFit: 'contain',
             display: 'block'
           }}
+          loading='lazy'
         />
       </div>
-      
-      <div className='info-section'>
-        <h1 className={`title ${align}`}>
-          {albumName}
-        </h1>
-        <div className={`album-data ${align}`}>
-          <p className='date'>
-            {date}
-          </p>
 
-          <div className='dot'></div>
-          
-          <p className='count'>
-            {numPhotos} Photos
-          </p>
-        </div>
-        <p className={`desc ${align}`}>
-          {description}
-        </p>
-      </div>
+      <AlbumHeader
+        title={albumName}
+        desc={description}
+        date={date}
+        photos={numPhotos}
+        textAlignment={align}
+      />
+
     </Link>
   )
 }

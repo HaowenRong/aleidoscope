@@ -1,0 +1,41 @@
+.info-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+} .info-section.underlined {
+  border-bottom: solid 1px;
+  padding-bottom: 2dvh;
+} .info-section .title {
+  width: 100%;
+  text-align: start;
+} .info-section .title.right {
+  text-align: end;
+} .info-section .album-data {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  gap: 0.5rem;
+} .info-section .album-data.right {
+  flex-direction: row-reverse;
+} .info-section .album-data .data {
+  font-size: large;
+} .separator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: black;
+  align-self: center;
+} .info-section .desc {
+  all: unset;
+  width: 100%;
+  height: auto;
+  text-align: start;
+  white-space: normal;
+  word-wrap: break-word;
+  color: black;
+} .info-section .desc.right {
+  text-align: end;
+}

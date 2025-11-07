@@ -33,7 +33,14 @@ export default function ImageCard({ src, alt = 'alt', images, index }) {
         onClick={() => setSelectedIndex(index)}
       >
         <div className='image-card'>
-          <Image src={src} alt={alt} fill style={{ objectFit: 'cover' }} />
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            style={{ objectFit: 'cover' }}
+            loading='lazy'
+            placeholder='empty'
+          />
         </div>
       </button>
 

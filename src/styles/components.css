@@ -24,6 +24,8 @@
   position: absolute;
   top: 1svh;
   right: 1svh;
+} .button-close:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
