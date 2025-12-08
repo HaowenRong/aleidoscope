@@ -4,11 +4,13 @@ import { useEffect, useRef } from 'react'
 import '../styles/slider.css'
 import PictureFrame from './PictureFrame'
 
-export default function PictureViewer({ frames, startIndex = 0 }) {
+export default function PictureViewer({ frames, startIndex=0 }) {
   const sliderIndexes = useRef(null)
 
+  const totalFrames = frames.length
+
   useEffect(() => {
-    if (sliderIndexes.current && startIndex >= 0 && startIndex < frames.length) {
+    if (sliderIndexes.current && startIndex >= 0 && startIndex < totalFrames) {
       const slide = sliderIndexes.current.children[startIndex]
       if (slide) {
         slide.scrollIntoView({ behavior: 'instant', inline: 'center' })
@@ -25,6 +27,8 @@ export default function PictureViewer({ frames, startIndex = 0 }) {
             imageSrc={src}
             imageAlt={`image ${i + 1}`}
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat...'
+            currentFrame={i+1}
+            totalFrames={totalFrames}
           />
         </div>
       ))}

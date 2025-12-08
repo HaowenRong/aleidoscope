@@ -22,7 +22,7 @@ export default async function AlbumBoard({ album='' }) {
         title={albumName}
         desc={description}
         date={date}
-        photos={numPhotos}
+        numPhotos={numPhotos}
         underline={true}
       />
       <ImageBoard images={albumPhotos}/>

@@ -15,7 +15,7 @@ export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', 
                 title='Error loading album'
                 desc='Unable to retrieve album data'
                 date=''
-                photos=''
+                numPhotos=''
                 textAlignment={align}
               />
             </div>
@@ -48,7 +48,7 @@ export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', 
         title={albumName}
         desc={description}
         date={date}
-        photos={numPhotos}
+        numPhotos={numPhotos}
         textAlignment={align}
       />
 

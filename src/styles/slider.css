@@ -10,6 +10,7 @@
   backdrop-filter: blur(15px);
 
   display: flex;
+  flex-direction: column;
   justify-content: center; 
   align-items: center;
 }
@@ -39,4 +40,16 @@
   position: relative;
   justify-content: center;
   align-items: center;
+}
+
+.page-count {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-size: larger;
+  text-align: center;
+  align-content: center;
+  border-radius: 50px;
+  color: aliceblue;
 }

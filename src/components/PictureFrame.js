@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 
-export default function PictureFrame({ title, imageSrc, imageAlt, description }) {
+export default function PictureFrame({ title, imageSrc, imageAlt, description, currentFrame, totalFrames }) {
   return (
     <div className='picture-frame' onClick={(e) => e.stopPropagation()}>
       <div className='picture-title'>
+        <h2 className='page-count'>{`${currentFrame}/${totalFrames}`}</h2>
         <h1 className='text'>{title}</h1>
       </div>
       <div className='picture-container'>

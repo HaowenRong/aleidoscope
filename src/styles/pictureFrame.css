@@ -24,11 +24,12 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+  align-content: center;
+  align-items: center;
 }
 
 .picture-title .text {
   all: unset;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: xx-large;
   color: black;
 }
