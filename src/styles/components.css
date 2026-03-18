@@ -15,17 +15,20 @@
 
 }
 
-.button-close {
+.button {
   all: unset;
   background-color: rgb(154, 154, 154);
   width: 5svh;
   height: 5svh;
   border-radius: 50px;
+} .button .close {
   position: absolute;
   top: 1svh;
   right: 1svh;
-} .button-close:hover {
+} .button .close:hover {
   cursor: pointer;
+} .button .arrow {
+  position: absolute;
 }
 
 @media (max-width: 768px) {

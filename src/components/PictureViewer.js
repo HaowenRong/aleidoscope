@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../styles/slider.css'
 import PictureFrame from './PictureFrame'
 
 export default function PictureViewer({ frames, startIndex=0 }) {
   const sliderIndexes = useRef(null)
+  const [currSlide, setCurrSlide] = useState(startIndex)
 
   const totalFrames = frames.length
 
@@ -26,7 +27,7 @@ export default function PictureViewer({ frames, startIndex=0 }) {
             title={`Picture`}
             imageSrc={src}
             imageAlt={`image ${i + 1}`}
-            description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id lacus erat...'
+            description=''
             currentFrame={i+1}
             totalFrames={totalFrames}
           />

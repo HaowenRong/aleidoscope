@@ -10,7 +10,6 @@ export default function Albums() {
       <div className='content'>
         <AlbumBoard album='album1' />
         <AlbumBoard album='album2' />
-        <AlbumBoard album='album3' />
       </div>
     </main>
   );

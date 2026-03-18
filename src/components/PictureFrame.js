@@ -18,17 +18,12 @@ export default function PictureFrame({ title, imageSrc, imageAlt, description, c
           style={{
             maxWidth: '100%',
             maxHeight: '100%',
-            height: 'auto',
-            width: 'auto',
+            width: '100%',
+            height: '100%',
             objectFit: 'contain',
             display: 'block'
           }}
         />
-        <div className='picture-desc'>
-          <div className='text'>
-            {description}
-          </div>
-        </div>
       </div>
     </div>
   )

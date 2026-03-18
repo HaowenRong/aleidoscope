@@ -1,33 +1,8 @@
 import '../styles/globals.css';
 import '../styles/components.css'
 import '../styles/layout.css'
-import ImageBoard from '@/components/ImageBoard';
+import { redirect } from 'next/navigation'
 
-const images = [
-  '/media/DSC00235_05.jpg',
-  '/media/DSC07672.jpg',
-  '/media/DSC07929.jpg',
-  '/media/DSC07557.jpg',
-  '/media/DSC07009.jpg',
-  '/media/DSC00235_05.jpg',
-  '/media/DSC07672.jpg',
-  '/media/DSC07929.jpg',
-  '/media/DSC07557.jpg',
-  '/media/DSC07009.jpg',
-  '/media/DSC00235_05.jpg',
-  '/media/DSC07672.jpg',
-  '/media/DSC07929.jpg',
-  '/media/DSC07557.jpg',
-  '/media/DSC07009.jpg',
-]
-
-
-export default function Home() {
-  return (
-    <main className='main'>
-      <div className='content'>
-        <ImageBoard images={images}/>
-      </div>
-    </main>
-  );
+export default function Root() {
+  redirect('/photo-stream')
 }

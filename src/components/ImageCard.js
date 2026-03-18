@@ -46,7 +46,6 @@ export default function ImageCard({ src, alt = 'alt', images, index }) {
 
       {selectedIndex !== null && (
         <div className='overlay' onClick={() => setSelectedIndex(null)}>
-          <ButtonClose />
           <div onClick={(e) => e.stopPropagation()} />
           <PictureViewer
             frames={images}
@@ -57,5 +56,3 @@ export default function ImageCard({ src, alt = 'alt', images, index }) {
     </>
   )
 }
-
-

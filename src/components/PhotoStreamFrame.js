@@ -34,7 +34,7 @@ export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', 
           height={1000}
           style={{
             maxWidth: '100%',
-            maxHeight: '100%',
+            maxHeight: '40svh',
             height: 'auto',
             width: 'auto',
             objectFit: 'contain',

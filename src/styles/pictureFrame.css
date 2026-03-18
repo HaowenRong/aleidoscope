@@ -1,16 +1,14 @@
 .picture-frame {
   position: relative;
   width: auto;
+  height: auto;
   max-width: 90%;
   overflow: hidden;
   display: inline-flex;
-  align-items: start;
   align-content: stretch;
-  justify-content: start;
   flex-direction: column;
   flex-wrap: nowrap;
-  height: 90dvh;
-  z-index: 2;
+  z-index: 3;
   transition:
     width 0.4s ease,
     height 0.4s ease,
@@ -19,7 +17,7 @@
 }
 
 .picture-title {
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   align-items: flex-end;
@@ -35,15 +33,14 @@
 }
 
 .picture-container {
-  height: 100%;
-  width: auto;
-  max-height: 85svh;
+  height: 85svh;
   max-width: 100%;
   display: inline-flex;
   flex-direction: row;
-  align-items: start;
+  align-items: stretch;
   gap: 0.5rem;
 } .picture-container img {
+  height: fit-content;
   border-radius: 0.25rem;
 } .picture-container .picture-desc {
   width: auto;
@@ -72,11 +69,9 @@
     justify-content: start;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 90dvh;
   }
 
   .picture-container {
-    height: 70dvh;
     max-height: 85svh;
     max-width: 100%;
     display: inline-flex;

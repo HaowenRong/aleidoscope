@@ -1,0 +1,35 @@
+{
+  "albums": [
+    {
+      "albumName": "album1",
+      "description": "An album with photos of varying sizes",
+      "images": [
+        "/media/album1/land1.jpg",
+        "/media/album1/land2.jpg",
+        "/media/album1/land3.jpg",
+        "/media/album1/land4.jpg",
+        "/media/album1/land5.jpg",
+        "/media/album1/land1.jpg",
+        "/media/album1/land2.jpg",
+        "/media/album1/land3.jpg",
+        "/media/album1/land4.jpg",
+        "/media/album1/land5.jpg"
+      ],
+      "coverPhoto": "/media/album1/land1.jpg",
+      "date": "2002/10/20",
+      "numPhotos": "30"
+    },
+    {
+      "albumName": "album2",
+      "description": "A collection of nature photos",
+      "images": [
+        "/media/album2/DSC08482.jpg",
+        "/media/album2/DSC06563.jpg",
+        "/media/album2/DSC06612.jpg"
+      ],
+      "coverPhoto": "/media/album2/DSC08482.jpg",
+      "date": "2004/10/20",
+      "numPhotos": "40"
+    }
+  ]
+}

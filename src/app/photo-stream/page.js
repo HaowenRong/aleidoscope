@@ -20,11 +20,6 @@ export default function PhotoStream() {
           albumLink='/album/album2'
           alignment='right'
         />
-        <PhotoStreamFrame
-          album='album3'
-          imageAlt='img3'
-          albumLink='/album/album3'
-        />
       </div>
     </main>
   );

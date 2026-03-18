@@ -9,7 +9,7 @@
 
 .image-board {
   display: grid;
-  gap: 1dvw;
+  gap: 0.5rem;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   justify-items: center;
@@ -29,8 +29,18 @@
   position: relative;
   overflow: hidden;
   border-radius: 0.25rem;
-} .image-card img {
-  transition: transform 0.1s ease;
-} .image-card img:hover {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+} .image-card:hover {
+  z-index: 1;
   transform: scale(1.2);
+  box-shadow: 0px 0px 30px dimgray;
+}
+
+@media (max-width: 768px) {
+  .image-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }

@@ -7,7 +7,7 @@ export default function NaviBar() {
   return (
     <div className='header'>
       <div className='navi-bar'>
-        <h1>AAAAaaaa</h1>
+        <h1>Gallery</h1>
 
         <div className='options-row'>
           <Link href='/photo-stream' className='option'>
