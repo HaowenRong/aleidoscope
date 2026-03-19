@@ -10,12 +10,14 @@
   }
 }
 
-html,
+html {
+  overflow-y: scroll;
+}
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-manrope);
   height: 100%;
   top: 0;
   left: 0;

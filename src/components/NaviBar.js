@@ -1,29 +1,36 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import '../styles/layout.css'
 
 export default function NaviBar() {
+  const [open, setOpen] = useState(false)
+
+
   return (
-    <div className='header'>
-      <div className='navi-bar'>
-        <h1>Gallery</h1>
-
-        <div className='options-row'>
-          <Link href='/photo-stream' className='option'>
-            <h3>Highlights</h3>
+    <nav className={`navi ${open ? 'open' : ''}`}>
+      <ul className='navi-list'>
+        <li>
+          <Link href='/photo-stream' className='button'>
+            <span className='label'>Highlights</span>
           </Link>
-
-          <Link href='/albums' className='option'>
-            <h3>Albums</h3>
+        </li>
+        <li>
+          <Link href='/albums' className='button'>
+            <span className='label'>Albums</span>
           </Link>
-
-          <Link href='/about' className='option'>
-            <h3>About</h3>
+        </li>
+        <li>
+          <Link href='/about' className='button'>
+            <span className='label'>About</span>
           </Link>
-        </div>
-      </div>
-    </div>
-    
+        </li>
+      </ul>
+
+      <button className='hamburg-icon' onClick={() => setOpen(!open)}>
+        <span>{open ? '✕' : '☰'}</span>
+      </button>
+    </nav>
   )
 }

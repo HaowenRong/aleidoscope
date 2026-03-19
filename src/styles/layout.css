@@ -13,58 +13,55 @@
   flex-direction: column;
 }
 
-.header {
+.navi {
+  all: unset;
+  pointer-events: none;
   position: fixed;
-  width: 100%;
   display: flex;
-  justify-content: center;
-  z-index: 2;
-}
-.navi-bar {
-  display: flex;
-  height: 4rem;
-  width: 90dvw;
-  border-radius: 0.5rem;
   align-items: center;
-  justify-content: space-between;
-  margin: 1rem;
-  backdrop-filter: saturate(200%);
-  background-color: rgba(30, 35, 35, 0.7);
-  box-shadow: 0px 0px 10px rgb(50, 42, 64);
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(10px);
-} .navi-bar h1 {
-  font-family: var(--font-satoshi);
+  z-index: 1;
+
+  transition: height 0.2s ease;
+} .navi * {
+  pointer-events: auto;
+ } .navi .navi-list {
   all: unset;
-  font-size: larger;
-  font-weight: bold;
-  user-select: none;
-  color: aliceblue;
-  width: 100%;
-  text-align: start;
-  padding-left: 2rem;
-} .navi-bar .options-row {
   display: flex;
-  height: 100%;
-} .navi-bar .options-row .option {
+} .navi .navi-list li {
+  list-style: none;
+}
+
+.navi .hamburg-icon {
+  display: none;
+}
+
+.navi .button{
   all: unset;
-  width: 10rem;
-  cursor: pointer;
-  border: solid;
-  border-width: 0;
-  border-left-width: 1px;
-  border-color: dimgrey;
   display: flex;
+  width: 140px;
+  height: 60px;
   align-items: center;
   justify-content: center;
-} .navi-bar .options-row .option:hover {
-  background-color: rgba(255, 255, 255, 0.050);
-} .navi-bar .options-row .option h3 {
-  all:unset;
-  font-size: large;
-  font-weight: 600;
-  user-select: none;
-  color: aliceblue;
+  border-radius: 15px;
+} .navi .button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+} .navi .button .label {
+  all: unset;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .content {
@@ -73,33 +70,50 @@
 }
 
 @media (max-width: 768px) {
-  .header {
+  .navi {
     bottom: 0;
-
+    justify-content: space-between;
+    border-top: 1px solid rgba(128, 128, 128, 0.3);
+    border-bottom: none;
+    padding: 50px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  } .navi .navi-list {
+    opacity: 0;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0;
+    transition: 
+      opacity 0.1s ease,
+      visibility 0.1s ease;
+  } .navi .button {
+    justify-content: flex-end;
   }
 
-  .navi-bar {
-    width: 100%;
-    height: 4rem;
-    justify-content: space-evenly;
-    border-radius: 0.5rem;
-  } .navi-bar h1 {
-    width: 100%;
-    font-size: large;
-    text-align: center;
-    margin-left: 1dvh;
-    margin-left: 1dvh;
-    display: none;
-  } .navi-bar .options-row {
-    width: 100%;
-  } .navi-bar .options-row .option:first-child {
-    border: none;
-  } .navi-bar .options-row .option {
-    width: 100%;
-    padding-left: 2dvw;
-    padding-right: 2dvw;
-  } .navi-bar .options-row .option h3 {
-    font-size: medium;
+  .navi .hamburg-icon {
+    all: unset;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    right: 25px;
+    bottom: 25px;
+  } .navi .hamburg-icon span {
+    font-size: 25px;
+  }
+
+  .navi.open {
+    height: 40svh;
+  } .navi.open .navi-list {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
   }
 
   .main {
