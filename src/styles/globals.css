@@ -6,7 +6,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: #0a0a0a;
-    --background: #ededed;
+    --background: #ffffff;
   }
 }
 
@@ -24,6 +24,17 @@ body {
 
 }
 
+.main {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-manrope), Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -38,5 +49,12 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: 0;
+    padding-bottom: 100px;
   }
 }
