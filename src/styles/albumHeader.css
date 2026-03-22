@@ -51,7 +51,7 @@
     flex-direction: column;
     gap: 30px;
     padding: 0;
-    padding-top: 50px;
+    padding-top: 0;
     margin-bottom: 30px;
   } .album-header .album-info {
     width: 100%;

@@ -23,6 +23,7 @@ export default function NaviBar() {
 
   return (
     <nav ref={naviRef} className={`navi ${open ? 'open' : ''}`}>
+      <h1 className='title'>Gallery</h1>
       <ul className='navi-list'>
         <li>
           <Link href='/photo-stream' className='button' onClick={() => setOpen(false)}>
