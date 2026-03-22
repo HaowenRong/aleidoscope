@@ -1,33 +1,33 @@
-import '../styles/pictureFrame.css'
-import '../styles/album.css'
-import '../styles/board.css'
 
-export default function AlbumHeader({ title, desc, date, numPhotos, textAlignment='left', underline=false}) {
-  let underlined = 'no-underline'
+import '../styles/albumHeader.css'
+import Image from 'next/image'
 
-  if (underline === true) {
-    underlined = 'underlined'
-  }
+export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail }) {
+
 
   return (
-    <div className={`info-section ${underlined}`}>
-      <h1 className={`title ${textAlignment}`}>
-        {title}
-      </h1>
-      <div className={`album-data ${textAlignment}`}>
-        <p className='data'>
-          {date}
-        </p>
-
-        <div className='separator' />
-        
-        <p className='data'>
-          {numPhotos} Photos
-        </p>
+    <div className={'album-header }'}>
+      <div className='album-info'>
+        <div className={'album-data'}>
+          <p className='data'>{date}</p>
+          <p className='separator'>·</p>
+          <p className='data'>{numPhotos} Photos</p>
+        </div>
+        <h1 className={'title'}>{title}</h1>
+        <p className={'desc'}>{desc}</p>
       </div>
-      <p className={`desc ${textAlignment}`}>
-        {desc}
-      </p>
+
+      <div className='thumbnail'>
+        {thumbnail && (
+          <Image
+            src={thumbnail}
+            alt='a'
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            loading='lazy'
+          />
+        )}
+      </div>
     </div>
   )
 }

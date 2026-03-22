@@ -28,13 +28,13 @@ export default async function Highlight({ album, imageAlt, albumLink='', alignme
   return (
     <Link href={albumLink} className={`highlight-frame ${align}`}>
       <div className='image-section'>
-          <Image
-            src={coverPhoto}
-            alt={imageAlt}
-            width={1000}
-            height={1000}
-            loading='lazy'
-          />
+        <Image
+          src={coverPhoto}
+          alt={imageAlt}
+          width={1000}
+          height={1000}
+          loading='lazy'
+        />
       </div>
       <HighlightInfo
         title={albumName}

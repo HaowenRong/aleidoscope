@@ -1,0 +1,63 @@
+.album-header {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  margin-bottom: 80px;
+}
+
+.album-header .album-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+} .album-header .album-info .album-data {
+  display: flex;
+  gap: 8px;
+  font-size: 15px;
+} .album-header .album-info .album-data .separator {
+  all: unset;
+  display: flex;
+  align-items: start;
+  font-size: 40px;
+  line-height: 0.39;
+} .album-header .album-info .title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 10px;
+} .album-header .album-info .desc {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.album-header .thumbnail {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 500px;
+  height: 500px;
+  width: min(500px, 100%);
+  height: min(500px, 100%);
+  border-radius: 1000px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .album-header {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0;
+    padding-top: 50px;
+    margin-bottom: 30px;
+  } .album-header .album-info {
+    width: 100%;
+  }
+
+  .album-header .thumbnail {
+    width: 70%;
+  }
+}

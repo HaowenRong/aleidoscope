@@ -38,7 +38,7 @@ body {
 .content {
   padding: 80px;
   box-sizing: border-box;
-  max-width: 1000px;
+  max-width: 1400px;
   width: 100%;
 }
 
@@ -67,5 +67,6 @@ a {
 
   .content {
     padding: 15px;
+    padding-top: 80px;
   }
 }
