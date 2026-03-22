@@ -51,11 +51,6 @@
   font-size: 18px;
 }
 
-.content {
-  margin-top: 6rem;
-  width: 100%;
-}
-
 @media (max-width: 768px) {
   .navi {
     bottom: 0;
@@ -119,10 +114,5 @@
     transition: 
       opacity 0.5s ease,
       visibility 0.5s ease;
-  }
-
-
-  .content {
-    margin-top: 5dvh;
   }
 }

@@ -1,0 +1,83 @@
+
+.highlight-frame {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid grey;
+  transition: color 0.3s ease;
+} .highlight-frame:hover {
+  cursor: pointer;
+  color: crimson;
+} .highlight-frame .image-section {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  height: 100%;
+} .highlight-frame .image-section img {
+  border-radius: 10px;
+  width: auto;
+  height: 100%;
+} .highlight-frame .info-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+} .highlight-frame .info-section .album-data {
+  display: flex;
+  gap: 8px;
+  font-size: 15px;
+} .highlight-frame .info-section .album-data .separator {
+  all: unset;
+  display: flex;
+  align-items: start;
+  font-size: 40px;
+  line-height: 0.39;
+} .highlight-frame .info-section .title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 10px;
+} .highlight-frame .info-section .desc {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.highlight-frame.right {
+  flex-direction: row-reverse;
+} .highlight-frame.right .image-section {
+  flex-direction: row;
+} .highlight-frame.right .info-section {
+  text-align: end;
+} .highlight-frame.right .info-section .album-data {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  .highlight-frame {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    gap: 20px;
+  } .highlight-frame.right {
+    flex-direction: column;
+  } .highlight-frame .image-section {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }.highlight-frame .image-section img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 5px;
+  } .highlight-frame.right .info-section {
+    text-align: start;
+  } .highlight-frame.right .info-section .album-data {
+    flex-direction: row;
+  }
+}

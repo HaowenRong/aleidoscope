@@ -1,9 +1,10 @@
 import { lookupAlbum } from '@/app/api/jsonReader.mjs'
-import AlbumHeader from './AlbumHeader'
+import HighlightInfo from './highlightInfo'
 import Link from 'next/link'
 import Image from 'next/image'
+import '../styles/highlight.css'
 
-export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', alignment='left' }) {
+export default async function Highlight({ album, imageAlt, albumLink='', alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
   const albumData = await lookupAlbum(album)
@@ -25,33 +26,23 @@ export default async function PhotoStreamFrame({ album, imageAlt, albumLink='', 
   const numPhotos = albumPhotos.length
 
   return (
-    <Link href={albumLink} className={`stream-picture-frame ${align}`}>
-      <div className='image-container'>
-        <Image
-          src={coverPhoto}
-          alt={imageAlt}
-          width={1000}
-          height={1000}
-          style={{
-            maxWidth: '100%',
-            maxHeight: '40svh',
-            height: 'auto',
-            width: 'auto',
-            objectFit: 'contain',
-            display: 'block'
-          }}
-          loading='lazy'
-        />
+    <Link href={albumLink} className={`highlight-frame ${align}`}>
+      <div className='image-section'>
+          <Image
+            src={coverPhoto}
+            alt={imageAlt}
+            width={1000}
+            height={1000}
+            loading='lazy'
+          />
       </div>
-
-      <AlbumHeader
+      <HighlightInfo
         title={albumName}
         desc={description}
         date={date}
         numPhotos={numPhotos}
         textAlignment={align}
       />
-
     </Link>
   )
 }

@@ -1,7 +1,6 @@
 import { lookupAlbum } from '@/app/api/jsonReader.mjs'
 import AlbumHeader from './AlbumHeader'
 import '../styles/pictureFrame.css'
-import '../styles/photoStream.css'
 import ImageBoard from '@/components/ImageBoard'
 
 export default async function AlbumBoard({ album='' }) {

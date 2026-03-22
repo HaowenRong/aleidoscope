@@ -1,5 +1,4 @@
 import '../styles/pictureFrame.css'
-import '../styles/photoStream.css'
 import '../styles/album.css'
 import '../styles/board.css'
 

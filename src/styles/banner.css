@@ -6,7 +6,7 @@
 } .banner .banner-track {
   display: flex;
   height: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 0.75s ease-in-out;
 } .banner .banner-track .banner-slide {
   min-width: 100%;
   height: 100%;
