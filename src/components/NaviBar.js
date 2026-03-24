@@ -22,31 +22,37 @@ export default function NaviBar() {
   }, [])
 
   return (
-    <nav ref={naviRef} className={`navi ${open ? 'open' : ''}`}>
-      <h1 className='title'>Gallery</h1>
-      <ul className='navi-list'>
-        <li>
-          <Link href='/photo-stream' className='button' onClick={() => setOpen(false)}>
-            <span className='label'>Highlights</span>
-          </Link>
-        </li>
-        <li>
-          <Link href='/albums' className='button' onClick={() => setOpen(false)}>
-            <span className='label'>Albums</span>
-          </Link>
-        </li>
-        <li>
-          <Link href='/about' className='button' onClick={() => setOpen(false)}>
-            <span className='label'>About</span>
-          </Link>
-        </li>
-      </ul>
+    <div className={`header ${open ? 'open' : ''}`}>
+      <div ref={naviRef} className='navi'>
+        <Link href='/' className='title-block'>
+          <div className='title-top'>Gallery</div>
+          <div className='title-bottom'>Photography</div>
+        </Link>
+        
+        <ul className='navi-list'>
+          <li>
+            <Link href='/' className='button' onClick={() => setOpen(false)}>
+              <span className='label'>Gallery</span>
+            </Link>
+          </li>
+          <li>
+            <Link href='/albums' className='button' onClick={() => setOpen(false)}>
+              <span className='label'>Contact</span>
+            </Link>
+          </li>
+          <li>
+            <Link href='/about' className='button' onClick={() => setOpen(false)}>
+              <span className='label'>About</span>
+            </Link>
+          </li>
+        </ul>
 
-      <button className='hamburg-icon' onClick={() => setOpen(!open)}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
+        <button className='hamburg-icon' onClick={() => setOpen(!open)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
   )
 }

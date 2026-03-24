@@ -27,6 +27,7 @@ export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail })
             loading='lazy'
           />
         )}
+        <div className='shadow' />
       </div>
     </div>
   )
