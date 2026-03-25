@@ -1,0 +1,24 @@
+.image-board {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+} .image-board .image-row {
+  display: flex;
+  gap: 4px;
+}.image-board .image-btn {
+  all: unset;
+  cursor: zoom-in;
+  display: block;
+}.image-board .image-btn .image {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}.image-board .image-btn .image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px 10px rgba(60, 60, 60, 0.5);
+  z-index: 1;
+}

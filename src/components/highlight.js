@@ -11,13 +11,12 @@ export default async function Highlight({ album, imageAlt, albumLink='', alignme
 
   // return error if no album found
   if (!albumData) {
-    return <div href={albumLink} className={`stream-picture-frame ${align}`}>
-              <AlbumHeader
+    return <div className={'highlight-frame'}>
+              <HighlightInfo
                 title='Error loading album'
                 desc='Unable to retrieve album data'
                 date=''
-                numPhotos=''
-                textAlignment={align}
+                numPhotos='0'
               />
             </div>
   }
