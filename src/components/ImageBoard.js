@@ -5,8 +5,10 @@ import { useState, useEffect, useRef } from 'react'
 import '../styles/imageBoard.css'
 
 export default function ImageBoard({ images }) {
-  const [rows, setRows] = useState([])
-  const containerRef = useRef(null)
+  const [rows, setRows]         = useState([])
+  const [selected, setSelected] = useState(null)
+
+  const containerRef            = useRef(null)
 
   // load images to get their dimentions
   useEffect(() => {
@@ -58,42 +60,83 @@ export default function ImageBoard({ images }) {
     return () => observer.disconnect()
   }, [rows])
 
+
+  const imgArr = rows.flat()
+
+  // lightbox functions
+  function showLightbox(img) {
+    const index = imgArr.findIndex(i => i.src === img.src)
+    setSelected(index)
+  }
+
+  function prev() {
+    setSelected(i => (i === 0 ? 0 : i - 1))
+  }
+
+  function next() {
+    setSelected(i => (i === imgArr.length - 1 ? imgArr.length - 1 : i + 1))
+  }
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape')     setSelected(null)
+      if (e.key === 'ArrowLeft')  prev()
+      if (e.key === 'ArrowRight') next()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [selected])
+
+
+
   return (
     <div className='image-board' ref={containerRef}>
+      {selected !== null && (
+        <div className='lightbox'>
+          <div className='image-container' onClick={e => e.stopPropagation()}>
+            <Image
+              src={imgArr[selected].src}
+              alt={`Image ${selected + 1}`}
+              fill
+              style={{ objectFit: 'contain' }}
+            />
+
+            <div className='image-indicator'>
+              <p className='count'>{selected + 1}</p>
+              <p className=''>/</p>
+              <p className='count'>{imgArr.length}</p>
+            </div>
+
+            <button className='closeBtn' onClick={ e => setSelected(null)}>×</button>
+          </div>
+        </div>
+      )}
+
       {rows.map((row, r) => (
         <div key={r} className='image-row'>
           {row.map((img, i) => (
-            <div
-              key={i}
-              className='image'
-              style={{
-                width: img.width,
-                height: img.height,
-                flexShrink: 0 
-              }}
+            <button
+              className='image-btn'
+              onClick={() => showLightbox(img)}
             >
-              <button
-                className='image-btn'
-                onClick={() => lightbox()}
+              <div
+                className='image'
+                style={{
+                  width:  img.width,
+                  height: img.height,
+                  flexShrink: 0
+                }}
               >
-                <div
-                  className='image'
-                  style={{
-                    width: img.width,
-                    height: img.height,
-                    flexShrink: 0
-                  }}
-                >
-                  <Image
-                    src={img.src}
-                    alt={`Image ${i + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-              </button>
-            </div>
+                <Image
+                  src={img.src}
+                  alt={`Image ${i + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+            </button>
           ))}
         </div>
       ))}
