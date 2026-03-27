@@ -41,7 +41,7 @@
   position: relative;
   width: 95svw;
   height: 80svh;
-} .lightbox .image-indicator {
+} .lightbox .lightbox-navibar {
   position: fixed;
   display: flex;
   gap: 10px;
@@ -49,6 +49,9 @@
   transform: translateX(-50%);
   bottom: 10px;
   height: 60px;
+} .lightbox .image-indicator {
+  display: flex;
+  gap: 10px;
   width: fit-content;
   align-items: center;
   justify-content: center;
@@ -64,16 +67,13 @@
   text-align: center;
 }
 
-.closeBtn {
+.lightbox-btn {
   all: unset;
-  position: fixed;
   display: flex;
   user-select: none;
   cursor: pointer;
   width: 60px;
   height: 60px;
-  top: 20px;
-  right: 20px;
   border-radius: 100px;
   align-items: center;
   justify-content: center;
@@ -82,16 +82,59 @@
   color: rgba(255, 255, 255, 0.8);
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid rgba(128, 128, 128, 0.3);
-} .closeBtn:hover {
+  z-index: 6;
+} .lightbox-btn:hover {
   border: 1px solid rgba(128, 128, 128, 1);
+} .lightbox-btn.close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
+.lightbox-navi-btn {
+  all: unset;
+  position: fixed;
+  top: 0;
+  color: rgba(255, 255, 255, 0);
+  font-size: 36px;
+  box-sizing: border-box;
+  height: 100svh;
+  width: 30svw;
+  border-radius: 50%;
+  color: rgba(255, 255, 255);
+  background-color: rgba(30, 30, 30, 0.3);
+  font-weight: 600;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease;
+} .lightbox-navi-btn:hover {
+  cursor: pointer;
+  opacity: 100;
+} .lightbox-navi-btn.left {
+  left: 0;
+  transform: translateX(-50%);
+  padding-right: 25px;
+  text-align: end;
+} .lightbox-navi-btn.right {
+  right: 0;
+  transform: translateX(+50%);
+  padding-left: 25px;
+  text-align: start;
+}
 
 @media (max-width: 768px) {
-  .closeBtn {
+   .lightbox-btn.close {
     display: flex;
     top: unset;
     right: 10px;
     bottom: 10px;
+  }
+
+  .lightbox-navi-btn {
+    width: 60svw;
+  } .lightbox-navi-btn.left {
+    padding-right: 15px;
+  } .lightbox-navi-btn.right {
+    padding-left: 15px;
   }
 }

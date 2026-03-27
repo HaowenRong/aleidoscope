@@ -102,13 +102,19 @@ export default function ImageBoard({ images }) {
               style={{ objectFit: 'contain' }}
             />
 
-            <div className='image-indicator'>
-              <p className='count'>{selected + 1}</p>
-              <p className=''>/</p>
-              <p className='count'>{imgArr.length}</p>
+            <button className='lightbox-navi-btn left' onClick={ e => prev()}>‹</button>
+
+            <div className='lightbox-navibar'>
+              <div className='image-indicator'>
+                <p className='count'>{selected + 1}</p>
+                <p className=''>/</p>
+                <p className='count'>{imgArr.length}</p>
+              </div>
             </div>
 
-            <button className='closeBtn' onClick={ e => setSelected(null)}>×</button>
+            <button className='lightbox-navi-btn right' onClick={ e => next()}>›</button>
+
+            <button className='lightbox-btn close' onClick={ e => setSelected(null)}>×</button>
           </div>
         </div>
       )}
