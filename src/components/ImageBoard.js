@@ -92,7 +92,7 @@ export default function ImageBoard({ images }) {
 
   return (
     <div className='image-board' ref={containerRef}>
-      {selected !== null && (
+      {selected !== null && imgArr[selected] && (
         <div className='lightbox'>
           <div className='image-container' onClick={e => e.stopPropagation()}>
             <Image
@@ -123,6 +123,7 @@ export default function ImageBoard({ images }) {
         <div key={r} className='image-row'>
           {row.map((img, i) => (
             <button
+              key={i}
               className='image-btn'
               onClick={() => showLightbox(img)}
             >

@@ -15,9 +15,8 @@
         "/media/album1/land4.jpg",
         "/media/album1/land5.jpg"
       ],
-      "coverPhoto": "/media/album1/land1.jpg",
-      "date": "2002/10/20",
-      "numPhotos": "30"
+      "coverPhoto": "/media/album1/land2.jpg",
+      "date": "2002/10/20"
     },
     {
       "albumName": "album2",
@@ -28,8 +27,7 @@
         "/media/album2/DSC06612.jpg"
       ],
       "coverPhoto": "/media/album2/DSC08482.jpg",
-      "date": "2004/10/20",
-      "numPhotos": "40"
+      "date": "2004/10/20"
     }
   ]
 }

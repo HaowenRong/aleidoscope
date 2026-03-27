@@ -25,8 +25,8 @@ export default function NaviBar() {
     <div className={`header ${open ? 'open' : ''}`}>
       <div ref={naviRef} className='navi'>
         <Link href='/' className='title-block'>
-          <div className='title-top'>Gallery</div>
-          <div className='title-bottom'>Photography</div>
+          <div className='title-top'>Photo</div>
+          <div className='title-bottom'>Gallery</div>
         </Link>
         
         <ul className='navi-list'>
@@ -36,7 +36,7 @@ export default function NaviBar() {
             </Link>
           </li>
           <li>
-            <Link href='/albums' className='button' onClick={() => setOpen(false)}>
+            <Link href='/contact' className='button' onClick={() => setOpen(false)}>
               <span className='label'>Contact</span>
             </Link>
           </li>

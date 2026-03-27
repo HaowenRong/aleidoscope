@@ -1,5 +1,4 @@
-import '../../styles/globals.css';
-import '../../styles/components.css'
+import '../../styles/globals.css'
 import '../../styles/layout.css'
 import '../../styles/about.css'
 
