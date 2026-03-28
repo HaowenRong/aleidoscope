@@ -24,7 +24,7 @@ export async function getAlbumData(name) {
   const { data, error } = await supabase
     .from('albums')
     .select('*')
-    .eq('album_name', name)
+    .eq('url_name', name)
     .single()
 
   if (error) {
@@ -45,11 +45,11 @@ export function getImageUrl(path) {
 }
 
 // get all images from a folder
-export async function getFolderImages(folder) {
+export async function getFolderImages(folder, column='created_at') {
   const { data, error } = await supabase.storage
     .from('albums')
     .list(folder, {
-      sortBy: { column: 'created_at', order: 'asc' }
+      sortBy: { column: column, order: 'asc' }
     })
 
   if (error) {

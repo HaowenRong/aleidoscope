@@ -23,7 +23,7 @@ export default function Root() {
   const [bannerImages, setBannerImages] = useState([])
 
   useEffect(() => {
-    getFolderImages(`banner`).then(data => {
+    getFolderImages('banner', 'name').then(data => {
       console.log(data)
       setBannerImages(data)
     })
@@ -36,11 +36,11 @@ export default function Root() {
         {albumData.map((album, i) => (
           <Highlight
             key        = {i}
-            albumName  = {album.album_name}
+            albumName  = {album.title}
             albumDesc  = {album.description}
-            albumCover = {`public/${album.album_name}/${album.cover_photo}`}
+            albumCover = {`public/${album.url_name}/${album.cover_photo}`}
             albumDate  = {album.date}
-            albumLink  = {`/album/${album.album_name}`}
+            urlName    = {album.url_name}
             alignment  = {i % 2 === 0 ? 'left' : 'right'}
           />
         ))}

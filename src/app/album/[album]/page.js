@@ -43,11 +43,11 @@ export default function Album({ params }) {
       <div className='content'>
         <BackButton />
         <AlbumHeader
-          title     = {albumData.album_name}
+          title     = {albumData.title}
           desc      = {albumData.description}
           date      = {albumData.date}
           numPhotos = {numPhotos}
-          thumbnail = {`public/${albumData.album_name}/${albumData.cover_photo}`}
+          thumbnail = {`public/${albumData.url_name}/${albumData.cover_photo}`}
         />
         <ImageBoard images={albumImages} />
       </div>

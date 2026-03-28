@@ -7,7 +7,7 @@ import '../styles/highlight.css'
 import { getNumInFolder, getImageUrl } from '@/app/api/supabase'
 import { useState, useEffect } from 'react'
 
-export default function Highlight({ albumName, albumDesc, albumCover, albumDate, albumLink, alignment='left' }) {
+export default function Highlight({ albumName, albumDesc, albumCover, albumDate, urlName, alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
   // get the cover image url
@@ -17,11 +17,11 @@ export default function Highlight({ albumName, albumDesc, albumCover, albumDate,
   const [numPhotos, setNumPhotos] = useState(0)
 
   useEffect(() => {
-    getNumInFolder(`public/${albumName}`).then(setNumPhotos)
+    getNumInFolder(`public/${urlName}`).then(setNumPhotos)
   }, [])
 
   return (
-    <Link href={albumLink} className={`highlight-frame ${align}`}>
+    <Link href={`/album/${urlName}`} className={`highlight-frame ${align}`}>
       <div className='image-section'>
         {albumCover && (
           <Image
