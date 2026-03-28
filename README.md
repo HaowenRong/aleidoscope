@@ -1,3 +1,2 @@
 # Gallery front-end
-This is a website that I built using Next.js to share some of my photography.
-Currently, this is only a front-end and the photos and albums are hard coded in a JSON file, but in the future I plan to connect this to a CDN so that I can upload images there where they will be stored and can be dynamically loaded here.
+This is a website that I built using Next.js to share some of my photography. The core functionality has been implemented, and the website has been integrated with the supabase database where it will retrieve its images from. Other pages will be expanded and completed in the near future.
