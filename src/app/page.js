@@ -4,7 +4,7 @@ import '../styles/globals.css'
 import '../styles/layout.css'
 import Banner from '@/components/Banner';
 import Highlight from '@/components/highlight';
-import { getAllAlbumData } from './api/supabase';
+import { getAllAlbumData, getFolderImages } from './api/supabase';
 import { useState, useEffect } from 'react';
 
 export default function Root() {
@@ -19,13 +19,19 @@ export default function Root() {
     })
   }, [])
 
+  // get banner images
+  const [bannerImages, setBannerImages] = useState([])
+
+  useEffect(() => {
+    getFolderImages(`banner`).then(data => {
+      console.log(data)
+      setBannerImages(data)
+    })
+  }, [])
+
   return (
     <main className='main'>
-      <Banner images={[
-        "/media/album1/land2.jpg",
-        "/media/album2/DSC08482.jpg",
-        "/media/album1/land3.jpg"
-      ]} />
+      <Banner images={ bannerImages } />
       <div className='content'>
         {albumData.map((album, i) => (
           <Highlight

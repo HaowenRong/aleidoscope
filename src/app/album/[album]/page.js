@@ -5,7 +5,7 @@ import '../../../styles/globals.css';
 import AlbumHeader from '@/components/AlbumHeader';
 import ImageBoard from '@/components/ImageBoard';
 import BackButton from '@/components/BackBtn';
-import { getFolder, getAlbumData, getNumInFolder } from '@/app/api/supabase';
+import { getFolderImages, getAlbumData, getNumInFolder } from '@/app/api/supabase';
 import { use, useEffect, useState } from 'react';
 
 export default function Album({ params }) {
@@ -32,7 +32,7 @@ export default function Album({ params }) {
   const [albumImages, setImages] = useState([])
 
   useEffect(() => {
-    getFolder(`public/${album}`).then(data => {
+    getFolderImages(`public/${album}`).then(data => {
       console.log(data)
       setImages(data)
     })

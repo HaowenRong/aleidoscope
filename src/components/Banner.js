@@ -36,7 +36,13 @@ export default function Banner({ images = [], interval = 5000 }) {
       <div className='banner-track' style={{ transform: `translateX(-${current * 100}%)` }}>
         {images.map((src, i) => (
           <div key={i} className='banner-slide'>
-            <Image src={src} alt={`Slide ${i}`} fill objectFit='cover' />
+            <Image
+              src={src}
+              alt={`Slide ${i}`}
+              fill
+              unoptimized
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
           </div>
         ))}
       </div>

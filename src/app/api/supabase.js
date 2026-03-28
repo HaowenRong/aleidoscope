@@ -45,7 +45,7 @@ export function getImageUrl(path) {
 }
 
 // get all images from a folder
-export async function getFolder(folder) {
+export async function getFolderImages(folder) {
   const { data, error } = await supabase.storage
     .from('albums')
     .list(folder, {
@@ -74,6 +74,22 @@ export async function getNumInFolder(folder) {
   }
 
   return data.length
+}
+
+// get banner images
+export async function getBannerImages() {
+  const { data, error } = await supabase.storage
+    .from('albums/banner')
+    .list(folder, {
+      sortBy: { column: 'created_at', order: 'asc' }
+    })
+
+  if (error) {
+    console.error(error)
+    return []
+  }
+
+  return data.map(file => getImageUrl(`${folder}/${file.name}`))
 }
 
 export default supabase
