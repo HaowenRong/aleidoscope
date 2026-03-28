@@ -1,29 +1,55 @@
+'use client'
+
 import '../../../styles/globals.css';
 
 import AlbumHeader from '@/components/AlbumHeader';
 import ImageBoard from '@/components/ImageBoard';
-import { lookupAlbum } from '@/app/api/jsonReader.mjs'
 import BackButton from '@/components/BackBtn';
+import { getFolder, getAlbumData, getNumInFolder } from '@/app/api/supabase';
+import { use, useEffect, useState } from 'react';
 
-export default async function Album({ params }) {
-  const { album } = await params
+export default function Album({ params }) {
+  const { album } = use(params)
 
-  const albumData = await lookupAlbum(album)
-  const { albumName, description, images: albumPhotos, coverPhoto, date } = albumData
-  const numPhotos = albumPhotos.length
+  // get album data
+  const [albumData, setAlbumData] = useState('')
+
+  useEffect(() => {
+    getAlbumData(album).then(data => {
+      console.log(data)
+      setAlbumData(data)
+    })
+  }, [])
+
+  // get number of photos
+  const [numPhotos, setNumPhotos] = useState(0)
+
+  useEffect(() => {
+    getNumInFolder(`public/${album}`).then(setNumPhotos)
+  }, [])
+
+  // get album images
+  const [albumImages, setImages] = useState([])
+
+  useEffect(() => {
+    getFolder(`public/${album}`).then(data => {
+      console.log(data)
+      setImages(data)
+    })
+  }, [])
 
   return (
     <main className='main'>
       <div className='content'>
         <BackButton />
         <AlbumHeader
-          title={albumName}
-          desc={description}
-          date={date}
-          numPhotos={numPhotos}
-          thumbnail={coverPhoto}
+          title     = {albumData.album_name}
+          desc      = {albumData.description}
+          date      = {albumData.date}
+          numPhotos = {numPhotos}
+          thumbnail = {`public/${albumData.album_name}/${albumData.cover_photo}`}
         />
-        <ImageBoard images={albumPhotos} />
+        <ImageBoard images={albumImages} />
       </div>
     </main>
   );

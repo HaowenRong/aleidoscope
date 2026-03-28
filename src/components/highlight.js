@@ -1,46 +1,44 @@
-import { lookupAlbum } from '@/app/api/jsonReader.mjs'
+'use client'
+
 import HighlightInfo from './highlightInfo'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../styles/highlight.css'
+import { getNumInFolder, getImageUrl } from '@/app/api/supabase'
+import { useState, useEffect } from 'react'
 
-export default async function Highlight({ album, imageAlt, albumLink='', alignment='left' }) {
+export default function Highlight({ albumName, albumDesc, albumCover, albumDate, albumLink, alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
-  const albumData = await lookupAlbum(album)
+  // get the cover image url
+  const albumCoverUrl = getImageUrl(albumCover)
 
-  // return error if no album found
-  if (!albumData) {
-    return <div className={'highlight-frame'}>
-              <HighlightInfo
-                title='Error loading album'
-                desc='Unable to retrieve album data'
-                date=''
-                numPhotos='0'
-              />
-            </div>
-  }
+  // get number of photos
+  const [numPhotos, setNumPhotos] = useState(0)
 
-  const { albumName, description, images: albumPhotos, coverPhoto, date } = albumData
-  const numPhotos = albumPhotos.length
+  useEffect(() => {
+    getNumInFolder(`public/${albumName}`).then(setNumPhotos)
+  }, [])
 
   return (
     <Link href={albumLink} className={`highlight-frame ${align}`}>
       <div className='image-section'>
-        <Image
-          src={coverPhoto}
-          alt={imageAlt}
-          width={1000}
-          height={1000}
-          loading='lazy'
-        />
+        {albumCover && (
+          <Image
+            src     = {albumCoverUrl}
+            alt     = {'imageAlt'}
+            width   = {1000}
+            height  = {1000}
+            loading = 'lazy'
+          />
+        )}
       </div>
       <HighlightInfo
-        title={albumName}
-        desc={description}
-        date={date}
-        numPhotos={numPhotos}
-        textAlignment={align}
+        title         = {albumName}
+        desc          = {albumDesc}
+        date          = {albumDate}
+        numPhotos     = {numPhotos}
+        textAlignment = {align}
       />
     </Link>
   )
