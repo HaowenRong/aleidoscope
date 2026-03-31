@@ -28,8 +28,8 @@ export default function NaviBar() {
     <div className={`header ${open ? 'open' : ''}`}>
       <div ref={naviRef} className='navi'>
         <Link href='/' className='title-block'>
-          <div className='title-top'>Photo</div>
-          <div className='title-bottom'>Gallery</div>
+          <div className='title-top'>Aleidescope</div>
+          <div className='title-bottom'>Photography</div>
         </Link>
         
         <ul className='navi-list'>
