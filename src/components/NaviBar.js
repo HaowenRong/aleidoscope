@@ -3,9 +3,12 @@
 import Link from 'next/link'
 import '../styles/layout.css'
 
+import { usePathname } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
 
 export default function NaviBar() {
+  const pathname = usePathname()
+
   const [open, setOpen] = useState(false)
 
   const naviRef = useRef(null)
@@ -31,17 +34,17 @@ export default function NaviBar() {
         
         <ul className='navi-list'>
           <li>
-            <Link href='/' className='button' onClick={() => setOpen(false)}>
+            <Link href='/' className={`button ${pathname === '/' ? 'active' : ''}`} onClick={() => setOpen(false)}>
               <span className='label'>Gallery</span>
             </Link>
           </li>
           <li>
-            <Link href='/contact' className='button' onClick={() => setOpen(false)}>
+            <Link href='/contact' className={`button ${pathname === '/contact' ? 'active' : ''}`} onClick={() => setOpen(false)}>
               <span className='label'>Contact</span>
             </Link>
           </li>
           <li>
-            <Link href='/about' className='button' onClick={() => setOpen(false)}>
+            <Link href='/about' className={`button ${pathname === '/about' ? 'active' : ''}`} onClick={() => setOpen(false)}>
               <span className='label'>About</span>
             </Link>
           </li>

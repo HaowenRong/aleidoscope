@@ -90,10 +90,19 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
+} .navi .button.active:hover {
+  cursor: default;
+  text-decoration: none;
+  text-decoration-thickness: 0;
+  text-underline-offset: 0;
 } .navi .button .label {
   all: unset;
   font-weight: 700;
   font-size: 18px;
+} .navi .button.active .label {
+  color: crimson;
+  font-weight: 900;
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 
