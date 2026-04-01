@@ -26,7 +26,7 @@ export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail })
         {albumCoverUrl && (
           <Image
             src={albumCoverUrl}
-            alt='a'
+            alt={albumCoverUrl}
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
             loading='lazy'
