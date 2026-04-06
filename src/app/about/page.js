@@ -22,7 +22,7 @@ export default function About() {
               width   = {1000}
               height  = {1000}
               loading = 'lazy'
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: '100%', height: 'auto', borderRadius: '10px' }}
             />
           )}
         </div>

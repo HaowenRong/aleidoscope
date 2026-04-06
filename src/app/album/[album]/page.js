@@ -16,7 +16,6 @@ export default function Album({ params }) {
 
   useEffect(() => {
     getAlbumData(album).then(data => {
-      console.log(data)
       setAlbumData(data)
     })
   }, [])
@@ -33,7 +32,6 @@ export default function Album({ params }) {
 
   useEffect(() => {
     getFolderImages(`public/${album}`).then(data => {
-      console.log(data)
       setImages(data)
     })
   }, [])

@@ -29,6 +29,7 @@ export default function Highlight({ albumName, albumDesc, albumCover, albumDate,
             alt     = {'imageAlt'}
             width   = {1000}
             height  = {1000}
+            style={{ borderRadius: '5px' }}
             loading = 'lazy'
           />
         )}

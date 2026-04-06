@@ -19,9 +19,11 @@
 }
 
 .image-header {
+  max-width: 800px;
   width: 100%;
   height: 100px;
   height: fit-content;
+  margin: 0 auto;
   margin-bottom: 2rem;
 } .image-header .img {
   width: 100%;

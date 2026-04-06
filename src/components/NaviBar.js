@@ -21,13 +21,14 @@ export default function NaviBar() {
     }
 
     document.addEventListener('mousedown', handleClickOutside)
+
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
   return (
     <div className={`header ${open ? 'open' : ''}`}>
       <div ref={naviRef} className='navi'>
-        <Link href='/' className='title-block'>
+        <Link href='/' className='title-block' onClick={() => setOpen(false)}>
           <div className='title-top'>Aleidescope</div>
           <div className='title-bottom'>Photography</div>
         </Link>

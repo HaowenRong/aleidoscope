@@ -35,6 +35,10 @@ body {
   flex-direction: column;
 }
 
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .content {
   padding: 80px;
   box-sizing: border-box;
@@ -67,6 +71,6 @@ a {
 
   .content {
     padding: 15px;
-    padding-top: 80px;
+    padding-top: 30px;
   }
 }

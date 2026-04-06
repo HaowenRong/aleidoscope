@@ -14,7 +14,6 @@ export default function Root() {
 
   useEffect(() => {
     getAllAlbumData().then(data => {
-      console.log(data)
       setAlbumData(data)
     })
   }, [])
@@ -24,7 +23,6 @@ export default function Root() {
 
   useEffect(() => {
     getFolderImages('banner', 'name').then(data => {
-      console.log(data)
       setBannerImages(data)
     })
   }, [])

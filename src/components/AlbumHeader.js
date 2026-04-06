@@ -8,7 +8,6 @@ export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail })
 
   // get the cover image url
   const albumCoverUrl = getImageUrl(thumbnail)
-  console.log(albumCoverUrl)
 
   return (
     <div className={'album-header }'}>
