@@ -12,6 +12,10 @@
   font-weight: 700;
   text-align: justify;
   margin-bottom: 1rem;
+} .about-desc a {
+  color:royalblue;
+} .about-desc a:hover {
+  color: blue;
 }
 
 .image-header {

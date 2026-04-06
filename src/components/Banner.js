@@ -40,7 +40,9 @@ export default function Banner({ images = [], interval = 5000 }) {
               src={src}
               alt={`Slide ${i}`}
               fill
-              unoptimized
+              sizes="100vw"
+              priority={i === 0}
+              quality={85}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
             />
           </div>
