@@ -2,7 +2,7 @@
 import localFont from 'next/font/local';
 
 export const metadata = {
-  title: 'phiew',
+  title: 'aleidescope',
   description: '...',
 };
 
