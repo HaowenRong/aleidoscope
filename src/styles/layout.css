@@ -35,7 +35,7 @@
   user-select: none;
 } .navi * {
   pointer-events: auto;
- } .navi .navi-list {
+} .navi .navi-list {
   all: unset;
   display: flex;
 } .navi .navi-list li {
@@ -157,19 +157,21 @@
     justify-content: space-between;
     padding: 40px;
     padding-top: 0;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
     align-items: flex-end;
     justify-content: flex-end;
   } .navi .navi-list {
     opacity: 0;
+    width: 50%;
     height: 100%;
     flex-direction: column;
     justify-content: space-evenly;
-    gap: 0;
+    gap: 0px;
     transition: 
       opacity 0.05s ease,
       visibility 0.05s ease;
   } .navi .button {
+    width: 100%;
     justify-content: flex-end;
     pointer-events: none;
   }
@@ -177,7 +179,7 @@
   .navi .title-block {
     position: absolute;
     bottom: 20px;
-    left: 25px;
+    left: 20px;
     padding: 10px;
     padding-top: 10px;
     padding-bottom: 10px;

@@ -29,6 +29,7 @@ export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail })
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
             loading='lazy'
+            quality={40}
           />
         )}
         <div className='shadow' />

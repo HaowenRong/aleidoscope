@@ -1,4 +1,4 @@
-# Aleidescope Photography Portfolio
+# Aleidoscope Photography Portfolio
 This is a website I developed as a way to share some of my photography as I felt that other platforms were too restrictive, with things such as limited aspect ratios, heavy image compression, and generally unfavourable policies. Creating my own site gives me much more freedom over how I share my photography and express myself. You can visit the site at [aleidoscope.vercel.app](https://aleidoscope.vercel.app).
 
 # Technical

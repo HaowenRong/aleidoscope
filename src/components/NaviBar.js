@@ -29,7 +29,7 @@ export default function NaviBar() {
     <div className={`header ${open ? 'open' : ''}`}>
       <div ref={naviRef} className='navi'>
         <Link href='/' className='title-block' onClick={() => setOpen(false)}>
-          <div className='title-top'>Aleidescope</div>
+          <div className='title-top'>Aleidoscope</div>
           <div className='title-bottom'>Photography</div>
         </Link>
         

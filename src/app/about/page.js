@@ -21,8 +21,7 @@ export default function About() {
               alt     = {'imageAlt'}
               width   = {1000}
               height  = {1000}
-              loading = 'lazy'
-              style={{ width: '100%', height: 'auto', borderRadius: '10px' }}
+              style={{ width: '100%', height: 'auto', borderRadius: '5px' }}
             />
           )}
         </div>
