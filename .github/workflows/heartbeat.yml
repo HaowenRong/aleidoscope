@@ -2,6 +2,7 @@ name: Supabase weekly ping
 on:
   schedule:
     - cron: '0 0 * * 0' # Sunday at midnight
+    - cron: '0 0 * * 3' # Wednesday at midnight
   workflow_dispatch:
 jobs:
   ping:
