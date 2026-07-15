@@ -9,11 +9,11 @@ The images for the site are currently hosted on Supabase, an open source Postgre
 # GUI
 The GUI was designed to be simple and intuitive, keeping the focus on the photos. A strong emphasis was placed on responsiveness so the mobile experience has a varied design from the desktop version which should allow for the site to be navigated more comfortably.
 
-*Home page*
+### *Home page*
 ![ui desktop](public/media/desktop-view.png)
 
-*Gallery view*
+### *Gallery view*
 ![ui gallery](public/media/gallery-view.png)
 
-*Mobile view*
+### *Mobile view*
 ![ui mobile](public/media/mobile-view.png)

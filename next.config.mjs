@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -6,7 +7,8 @@ const nextConfig = {
         protocol: 'https',
         hostname: process.env.NEXT_PUBLIC_SUPABASE_URL.replace('https://', ''),
       }
-    ]
+    ],
+    qualities: [75, 85],
   }
 };
 
