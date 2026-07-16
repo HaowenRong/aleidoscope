@@ -27,8 +27,9 @@ export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail })
             src={albumCoverUrl}
             alt={albumCoverUrl}
             fill
+            sizes='100'
             style={{ objectFit: 'cover', objectPosition: 'center' }}
-            loading='lazy'
+            loading='eager'
             quality={40}
           />
         )}

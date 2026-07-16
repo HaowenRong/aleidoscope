@@ -1,40 +1,17 @@
-'use client'
-
 import '../../../styles/globals.css';
 
 import AlbumHeader from '@/components/AlbumHeader';
 import ImageBoard from '@/components/ImageBoard';
 import BackButton from '@/components/BackBtn';
 import { getFolderImages, getAlbumData, getNumInFolder } from '@/app/api/supabase';
-import { use, useEffect, useState } from 'react';
 
-export default function Album({ params }) {
-  const { album } = use(params)
+export default async function Album({ params }) {
+  
+  const { album } = await params
 
-  // get album data
-  const [albumData, setAlbumData] = useState('')
-
-  useEffect(() => {
-    getAlbumData(album).then(data => {
-      setAlbumData(data)
-    })
-  }, [])
-
-  // get number of photos
-  const [numPhotos, setNumPhotos] = useState(0)
-
-  useEffect(() => {
-    getNumInFolder(`public/${album}`).then(setNumPhotos)
-  }, [])
-
-  // get album images
-  const [albumImages, setImages] = useState([])
-
-  useEffect(() => {
-    getFolderImages(`public/${album}`).then(data => {
-      setImages(data)
-    })
-  }, [])
+  const albumData  = await getAlbumData(album)
+  const numPhotos  = await getNumInFolder(`public/${album}`)
+  const albumImages = await getFolderImages(`public/${album}`)
 
   return (
     <main className='main'>
