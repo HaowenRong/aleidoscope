@@ -1,24 +1,14 @@
-'use client'
-
 import HighlightInfo from './highlightInfo'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../styles/highlight.css'
 import { getNumInFolder, getImageUrl } from '@/app/api/supabase'
-import { useState, useEffect } from 'react'
 
-export default function Highlight({ albumName, albumDesc, albumCover, albumDate, urlName, alignment='left' }) {
+export default async function Highlight({ albumName, albumDesc, albumCover, albumDate, urlName, alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
-  // get the cover image url
   const albumCoverUrl = getImageUrl(albumCover)
-
-  // get number of photos
-  const [numPhotos, setNumPhotos] = useState(0)
-
-  useEffect(() => {
-    getNumInFolder(`public/${urlName}`).then(setNumPhotos)
-  }, [])
+  const numPhotos     = getNumInFolder(`public/${urlName}`)
 
   return (
     <Link href={`/album/${urlName}`} className={`highlight-frame ${align}`}>

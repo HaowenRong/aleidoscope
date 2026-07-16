@@ -1,31 +1,13 @@
-'use client'
-
 import '../styles/globals.css'
 import '../styles/layout.css'
 import Banner from '@/components/Banner';
 import Highlight from '@/components/highlight';
 import { getAllAlbumData, getFolderImages } from './api/supabase';
-import { useState, useEffect } from 'react';
 
-export default function Root() {
+export default async function Root() {
 
-  // get album data
-  const [albumData, setAlbumData] = useState([])
-
-  useEffect(() => {
-    getAllAlbumData().then(data => {
-      setAlbumData(data)
-    })
-  }, [])
-
-  // get banner images
-  const [bannerImages, setBannerImages] = useState([])
-
-  useEffect(() => {
-    getFolderImages('banner', 'name').then(data => {
-      setBannerImages(data)
-    })
-  }, [])
+  const bannerImages = await getFolderImages('banner', 'name')
+  const albumData    = await getAllAlbumData()
 
   return (
     <main className='main'>

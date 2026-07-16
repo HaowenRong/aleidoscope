@@ -1,11 +1,13 @@
 'use client'
 
 import Image from 'next/image'
+import ImageBoardSkeleton from './loadingSkeletons'
 import { useState, useEffect, useRef } from 'react'
 import '../styles/imageBoard.css'
 
 export default function ImageBoard({ images }) {
-  const [rows, setRows]         = useState([])
+  const [loading,  setLoading]  = useState(true)
+  const [rows,     setRows]     = useState([])
   const [selected, setSelected] = useState(null)
 
   const containerRef            = useRef(null)
@@ -20,6 +22,7 @@ export default function ImageBoard({ images }) {
       }))
     ).then(loaded => {
       buildRows(loaded)
+      setLoading(false)
     })
   }, [images])
 
@@ -54,9 +57,15 @@ export default function ImageBoard({ images }) {
   // check and rebuild rows on window resize
   useEffect(() => {
     const observer = new ResizeObserver(() => {
-      if (rows.length > 0) buildRows(rows.flat().map(i => ({ src: i.src, ratio: i.ratio })))
+      if (rows.length > 0) {
+        buildRows(rows.flat().map(i => ({ src: i.src, ratio: i.ratio })))
+      }
     })
-    if (containerRef.current) observer.observe(containerRef.current)
+    
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    } 
+
     return () => observer.disconnect()
   }, [rows])
 
@@ -88,7 +97,9 @@ export default function ImageBoard({ images }) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [selected])
 
-
+  if (loading) {
+    return <ImageBoardSkeleton />
+  }
 
   return (
     <div className='image-board' ref={containerRef}>
