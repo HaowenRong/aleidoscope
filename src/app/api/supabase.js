@@ -10,6 +10,7 @@ export async function getAllAlbumData() {
   const { data, error } = await supabase
     .from('albums')
     .select('*')
+    .order('date', { ascending: false })
 
   if (error) {
     console.error(error)
@@ -45,7 +46,7 @@ export function getImageUrl(path) {
 }
 
 // get all images from a folder
-export async function getFolderImages(folder, column='created_at') {
+export async function getFolderImages(folder, column='name') {
   const { data, error } = await supabase.storage
     .from('albums')
     .list(folder, {
@@ -64,9 +65,7 @@ export async function getFolderImages(folder, column='created_at') {
 export async function getNumInFolder(folder) {
   const { data, error } = await supabase.storage
     .from('albums')
-    .list(folder, {
-      sortBy: { column: 'created_at', order: 'asc' }
-    })
+    .list(folder)
 
   if (error) {
     console.error(error)
@@ -77,11 +76,11 @@ export async function getNumInFolder(folder) {
 }
 
 // get banner images
-export async function getBannerImages() {
+export async function getBannerImages(column='name') {
   const { data, error } = await supabase.storage
     .from('albums/banner')
     .list(folder, {
-      sortBy: { column: 'created_at', order: 'asc' }
+      sortBy: { column: column, order: 'asc' }
     })
 
   if (error) {
