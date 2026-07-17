@@ -40,6 +40,9 @@ button:focus:not(:focus-visible) {
 }
 
 .content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 80px;
   box-sizing: border-box;
   max-width: 1400px;

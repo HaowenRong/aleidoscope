@@ -1,0 +1,159 @@
+
+.timeline {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  margin-top: 100px;
+  background-color: var(--foreground);
+  align-self: center;
+  justify-content: center;
+}
+
+.timeline-frame {
+  max-height: 100%;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: 40px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition:
+    color 0.3s ease,
+    gap 0.3s ease,
+    padding 0.3s ease;
+} .timeline-frame:hover {
+  cursor: pointer;
+  color: crimson;
+  gap: 6rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+} .timeline-frame .image-section {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 100%;
+  width: 50%;
+  flex-shrink: 1;
+} .timeline-frame .image-section img {
+  max-width: 100%;
+  width: auto;
+  height: 100%;
+} .timeline-frame .info-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+} .timeline-frame .info-section .album-data {
+  display: flex;
+  gap: 8px;
+  font-size: 15px;
+} .timeline-frame .info-section .album-data .separator {
+  all: unset;
+  user-select: none;
+  display: flex;
+  align-items: start;
+  font-size: 40px;
+  line-height: 0.39;
+} .timeline-frame .info-section .title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 10px;
+} .timeline-frame .info-section .desc {
+  font-size: 16px;
+  font-weight: 600;
+} .timeline-frame .dot {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--foreground);
+  transition:
+    width 0.15s ease,
+    height 0.3s ease,
+    background-color 0.3s ease;
+} .timeline-frame:hover .dot {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: crimson;
+}
+
+.timeline-frame.right {
+  flex-direction: row-reverse;
+} .timeline-frame.right .image-section {
+  flex-direction: row;
+} .timeline-frame.right .info-section {
+  text-align: end;
+} .timeline-frame.right .info-section .album-data {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  .timelineContent {
+    padding-left: 25px;
+  }
+
+  .timeline {
+    position: absolute;
+    left: calc((25 - (3 / 2)) * 1px);
+    width: 3px;
+    height: 100%;
+    margin-top: 100px;
+    background-color: var(--foreground);
+    align-self: self-start;
+  }
+
+  .timeline-frame {
+    max-height: none;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding-left: 25px;
+    padding-right: 0;
+    gap: 20px;
+  }.timeline-frame:hover {
+    cursor: pointer;
+    color: crimson;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    padding-left: 25px;
+    padding-right: 0;
+  }.timeline-frame.right {
+    flex-direction: column;
+  } .timeline-frame .image-section {
+    max-width: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }.timeline-frame .image-section img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 5px;
+  } .timeline-frame .info-section {
+    width: 100%;
+  } .timeline-frame.right .info-section {
+    text-align: start;
+  } .timeline-frame.right .info-section .album-data {
+    flex-direction: row;
+  } .timeline-frame .dot {
+    display: none;
+  } .timeline-frame .dot-mobile {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--foreground);
+    left: calc((25 - (20 / 2)) * 1px);
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    justify-content: center;
+  }
+}

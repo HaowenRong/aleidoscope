@@ -1,7 +1,8 @@
 import '../styles/globals.css'
 import '../styles/layout.css'
+import '../styles/timeline.css'
 import Banner from '@/components/Banner';
-import Highlight from '@/components/highlight';
+import Timeline from '@/components/timelineCard';
 import { getAllAlbumData, getFolderImages } from './api/supabase';
 
 export default async function Root() {
@@ -12,9 +13,10 @@ export default async function Root() {
   return (
     <main className='main'>
       <Banner images={ bannerImages } />
-      <div className='content'>
+      <div className='content timelineContent'>
+        <div className='timeline' />
         {albumData.map((album, i) => (
-          <Highlight
+          <Timeline
             key        = {i}
             albumName  = {album.title}
             albumDesc  = {album.description}

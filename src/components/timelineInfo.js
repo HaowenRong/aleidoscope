@@ -1,5 +1,5 @@
 
-export default function HighlightInfo({ title, desc, date, numPhotos }) {
+export default function TimelineInfo({ title, desc, date, numPhotos }) {
 
   return (
     <div className={'info-section }'}>
@@ -8,8 +8,10 @@ export default function HighlightInfo({ title, desc, date, numPhotos }) {
         <p className='separator'>·</p>
         <p>{numPhotos} Photos</p>
       </div>
-
-      <h1 className={'title'}>{title}</h1>
+      <div className='dot-mobile' />
+      <h1 className={'title'}>
+        {title}
+      </h1>
 
       <p className={'desc'}>{desc}</p>
     </div>
