@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import '../styles/layout.css'
 import '../styles/timeline.css'
 import Banner from '@/components/Banner';
-import Timeline from '@/components/timelineCard';
+import Timeline from '@/components/TimelineCard';
 import { getAllAlbumData, getFolderImages } from './api/supabase';
 
 export default async function Root() {

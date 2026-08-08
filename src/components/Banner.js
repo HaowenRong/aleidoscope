@@ -42,7 +42,7 @@ export default function Banner({ images = [], interval = 5000 }) {
               fill
               sizes="100vw"
               priority={i === 0}
-              quality={85}
+              quality={75}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
             />
           </div>

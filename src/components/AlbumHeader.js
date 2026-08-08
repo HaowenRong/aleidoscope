@@ -1,13 +1,7 @@
-'use client'
-
 import '../styles/albumHeader.css'
-import Image from 'next/image'
-import { getImageUrl } from '@/app/api/supabase'
+import Thumbnail from './Thumbnail'
 
 export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail }) {
-
-  // get the cover image url
-  const albumCoverUrl = getImageUrl(thumbnail)
 
   return (
     <div className={'album-header }'}>
@@ -21,20 +15,7 @@ export default function AlbumHeader({ title, desc, date, numPhotos, thumbnail })
         <p className={'desc'}>{desc}</p>
       </div>
 
-      <div className='thumbnail'>
-        {albumCoverUrl && (
-          <Image
-            src={albumCoverUrl}
-            alt={albumCoverUrl}
-            fill
-            sizes='100'
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-            loading='eager'
-            quality={40}
-          />
-        )}
-        <div className='shadow' />
-      </div>
+      <Thumbnail thumbnail={thumbnail} />
     </div>
   )
 }

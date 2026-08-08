@@ -9,7 +9,7 @@ const nextConfig = {
         hostname: process.env.NEXT_PUBLIC_SUPABASE_URL.replace('https://', ''),
       }
     ],
-    qualities: [40, 75, 85],
+    qualities: [20, 75],
   }
 };
 

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import ImageBoardSkeleton from './loadingSkeletons'
+import ImageBoardSkeleton from './ImageBoardSkeleton'
 import { useState, useEffect, useRef } from 'react'
 import '../styles/imageBoard.css'
 
