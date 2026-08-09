@@ -5,16 +5,34 @@
   height: calc(100svh - 100px);
   padding: 10px;
 } .atlas-container .atlas {
+  position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px;
-  padding-right: 0px;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-} .atlas-container .atlas-sidebar {
+  overflow: hidden;
+}
+
+.atlas-container .atlas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.atlas-container .atlas-sidebar {
   width: 100%;
   height: 100%;
-  padding: 10px;
-  padding-left: 0px;
-  border-radius: 15px;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.loading-map {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  align-content: center;
 }
