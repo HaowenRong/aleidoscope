@@ -36,3 +36,19 @@
   text-align: center;
   align-content: center;
 }
+
+.marker {
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+} .marker:hover {
+  transform: scale(1.1);
+  z-index: 1000;
+}
+
+.cluster {
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+} .cluster:hover {
+  transform: scale(1.1);
+  z-index: 1000;
+}
