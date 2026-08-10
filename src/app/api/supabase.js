@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -8,20 +8,32 @@ const supabase = createClient(
 // get all album data
 export async function getAlbums() {
   const { data, error } = await supabase
-    .from("albums")
-    .select("*")
-    .order("date", { ascending: false })
+    .from('albums')
+    .select(`
+      *,
+      groups (
+        images (count)
+      )
+    `)
+    .order('date', { ascending: false })
 
   if (error) throw error
-  return data
+
+  return data.map(({ groups, ...album }) => ({
+    ...album,
+    photo_count: groups.reduce(
+      (sum, group) => sum + (group.images[0].count),
+      0
+    ),
+  }))
 }
 
 // get single album data
 export async function getAlbum(urlName) {
   const { data, error } = await supabase
-    .from("albums")
-    .select("*")
-    .eq("url_name", urlName)
+    .from('albums')
+    .select('*')
+    .eq('url_name', urlName)
     .single()
 
   if (error) throw error
@@ -31,7 +43,7 @@ export async function getAlbum(urlName) {
 // get album data along with groups and images
 export async function getAlbumWithAll(urlName) {
   const { data, error } = await supabase
-    .from("albums")
+    .from('albums')
     .select(
       `
       *,
@@ -43,8 +55,8 @@ export async function getAlbumWithAll(urlName) {
       )
     `
     )
-    .eq("url_name", urlName)
-    .order("sort_order", { referencedTable: "groups.images", ascending: true })
+    .eq('url_name', urlName)
+    .order('sort_order', { referencedTable: 'groups.images', ascending: true })
     .single()
 
   if (error) throw error
@@ -54,10 +66,10 @@ export async function getAlbumWithAll(urlName) {
 // get groups in an album
 export async function getAlbumGroups(albumId) {
   const { data, error } = await supabase
-    .from("groups")
-    .select("*")
-    .eq("album_id", albumId)
-    .order("date", { ascending: true })
+    .from('groups')
+    .select('*')
+    .eq('album_id', albumId)
+    .order('date', { ascending: true })
 
   if (error) throw error
   return data
@@ -66,7 +78,7 @@ export async function getAlbumGroups(albumId) {
 // get all groups as an array
 export async function getAllGroups() {
   const { data, error } = await supabase
-    .from("albums")
+    .from('albums')
     .select(`
       url_name,
       groups (
@@ -87,7 +99,7 @@ export async function getAllGroups() {
 // get group data along with its images
 export async function getGroupWithImages(groupId) {
   const { data, error } = await supabase
-    .from("groups")
+    .from('groups')
     .select(
       `
       *,
@@ -96,8 +108,8 @@ export async function getGroupWithImages(groupId) {
       )
     `
     )
-    .eq("id", groupId)
-    .order("sort_order", { referencedTable: "images", ascending: true })
+    .eq('id', groupId)
+    .order('sort_order', { referencedTable: 'images', ascending: true })
     .single()
 
   if (error) throw error
@@ -108,8 +120,22 @@ export async function getGroupWithImages(groupId) {
 export function getImageUrl(path) {
   if (!path) return null
 
-  const { data } = supabase.storage.from("albums").getPublicUrl(path)
+  const { data } = supabase.storage.from('albums').getPublicUrl(path)
   return data.publicUrl
+}
+
+
+// get banner images
+export async function getBanners() {
+  const { data, error } = await supabase
+    .from('banners')
+    .select('file_path')
+
+  if (error) throw error
+
+  return data.map(
+    (banner) => supabase.storage.from('albums').getPublicUrl(banner.file_path).data.publicUrl
+  )
 }
 
 export default supabase

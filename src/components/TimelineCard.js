@@ -2,13 +2,14 @@ import TimelineInfo from './timelineInfo'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../styles/timeline.css'
-import { getNumInFolder, getImageUrl } from '@/app/api/supabase'
+import { getImageUrl } from '@/app/api/supabase'
 
-export default async function Timeline({ albumName, albumDesc, albumCover, albumDate, urlName, alignment='left' }) {
+export default async function Timeline({ albumName, albumDesc, albumCover, 
+                                         albumDate, numPhotos, urlName,
+                                         alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
 
   const albumCoverUrl = getImageUrl(albumCover)
-  const numPhotos     = getNumInFolder(`public/${urlName}`)
 
   return (
     <Link href={`/album/${urlName}`} className={`timeline-frame ${align}`}>
@@ -19,7 +20,7 @@ export default async function Timeline({ albumName, albumDesc, albumCover, album
             alt     = {'imageAlt'}
             width   = {1000}
             height  = {1000}
-            style={{ borderRadius: '5px' }}
+            style   = {{ borderRadius: '5px' }}
             loading = 'lazy'
           />
         )}

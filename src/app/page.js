@@ -3,16 +3,16 @@ import '../styles/layout.css'
 import '../styles/timeline.css'
 import Banner from '@/components/Banner';
 import Timeline from '@/components/TimelineCard';
-import { getAllAlbumData, getFolderImages } from './api/supabase';
+import { getAlbums, getBanners } from './api/supabase';
 
 export default async function Root() {
 
-  const bannerImages = await getFolderImages('banner', 'name')
-  const albumData    = await getAllAlbumData()
+  const albumData    = await getAlbums()
+  const bannerImages = await getBanners()
 
   return (
     <main className='main'>
-      <Banner images={ bannerImages } />
+      <Banner images={bannerImages} />
       <div className='content timelineContent'>
         <div className='timeline' />
         {albumData.map((album, i) => (
@@ -22,6 +22,7 @@ export default async function Root() {
             albumDesc  = {album.description}
             albumCover = {`public/${album.url_name}/${album.cover_photo}`}
             albumDate  = {album.date}
+            numPhotos  = {album.photo_count}
             urlName    = {album.url_name}
             alignment  = {i % 2 === 0 ? 'left' : 'right'}
           />
