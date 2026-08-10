@@ -10,7 +10,7 @@ import L from 'leaflet';
 import { photoMarker } from './photoMarker';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-export default function Map({ images }) {
+export default function Map({ markerData }) {
   const mapRef = useRef(null)
 
   const handleMarkerClick = (album) => {
@@ -74,17 +74,17 @@ export default function Map({ images }) {
           })
         }}
       >
-        {images.map((album) => {
+        {markerData.map((group) => {
           const customIcon = photoMarker({
-            coverPhoto: `public/${album.url_name}/${album.cover_photo}`,
+            coverPhoto: `public/${group.album_url_name}/${group.title}/${group.cover_photo}`,
           })
 
           return (
             <Marker
-              key={album.id}
-              position={[album.lat, album.long]}
+              key={group.id}
+              position={[group.lat, group.long]}
               icon={customIcon}
-              eventHandlers={{ click: () => handleMarkerClick(album) }}
+              eventHandlers={{ click: () => handleMarkerClick(group) }}
             />
           )
         })}
