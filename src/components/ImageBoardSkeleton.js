@@ -7,8 +7,6 @@ export default function ImageBoardSkeleton({}) {
       <div className='card' />
       <div className='card' />
       <div className='card' />
-      <div className='card' />
-      <div className='card' />
     </div>
-  );
+  )
 }

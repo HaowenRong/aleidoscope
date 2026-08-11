@@ -4,39 +4,53 @@ import Image from 'next/image'
 import ImageBoardSkeleton from './ImageBoardSkeleton'
 import { useState, useEffect, useRef } from 'react'
 import '../styles/imageBoard.css'
+import { getImageUrl } from '@/app/api/supabase'
+import { useMemo } from 'react'
+import GroupHeader from './GroupHeader'
 
-export default function ImageBoard({ images }) {
+export default function ImageBoard({ images, containerWidth, title, desc }) {
   const [loading,  setLoading]  = useState(true)
   const [rows,     setRows]     = useState([])
   const [selected, setSelected] = useState(null)
 
-  const containerRef            = useRef(null)
+  const loadedItemsRef = useRef([])
+
+  // cache image urls
+  const imageUrls = useMemo(
+    () => images.map((path) => getImageUrl(path)),
+    [images]
+  )
 
   // load images to get their dimentions
   useEffect(() => {
     Promise.all(
-      images.map(src => new Promise(resolve => {
+      imageUrls.map(src => new Promise(resolve => {
         const img = new window.Image()
         img.src = src
         img.onload = () => resolve({ src, ratio: img.naturalWidth / img.naturalHeight })
       }))
     ).then(loaded => {
-      buildRows(loaded)
+      loadedItemsRef.current = loaded
       setLoading(false)
     })
-  }, [images])
+  }, [imageUrls])
+
+  // rebuild rows when loading finishes or container width changes
+  useEffect(() => {
+    if (loading || loadedItemsRef.current.length === 0) return
+    if (!containerWidth) return
+    setRows(buildRows(loadedItemsRef.current))
+  }, [loading, containerWidth])
 
   // build rows based on image dimentions
   function buildRows(items) {
-    const containerWidth = containerRef.current?.offsetWidth || 800
     const targetHeight = 420
-    const gap = 4
+    const gap          = 4
 
-    const result = []
-    let row = []
+    const builtRows = []
+    let row      = []
     let rowRatio = 0
 
-    // calculate heights so that rows can be filled
     items.forEach((item, i) => {
       row.push(item)
       rowRatio += item.ratio
@@ -45,30 +59,14 @@ export default function ImageBoard({ images }) {
 
       if (rowWidth >= containerWidth || i === items.length - 1) {
         const height = (containerWidth - gap * (row.length - 1)) / rowRatio
-        result.push(row.map(r => ({ ...r, width: r.ratio * height, height })))
-        row = []
+        builtRows.push(row.map(r => ({ ...r, width: r.ratio * height, height })))
+        row      = []
         rowRatio = 0
       }
     })
 
-    setRows(result)
+    return builtRows
   }
-
-  // check and rebuild rows on window resize
-  useEffect(() => {
-    const observer = new ResizeObserver(() => {
-      if (rows.length > 0) {
-        buildRows(rows.flat().map(i => ({ src: i.src, ratio: i.ratio })))
-      }
-    })
-    
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    } 
-
-    return () => observer.disconnect()
-  }, [rows])
-
 
   const imgArr = rows.flat()
 
@@ -102,7 +100,8 @@ export default function ImageBoard({ images }) {
   }
 
   return (
-    <div className='image-board' ref={containerRef}>
+    <div className='image-board'>
+      <GroupHeader title={title} desc={desc} />
       {selected !== null && imgArr[selected] && (
         <div className='lightbox'>
           <div className='image-container' onClick={e => e.stopPropagation()}>
@@ -150,7 +149,7 @@ export default function ImageBoard({ images }) {
                   src={img.src}
                   alt={`Image ${i + 1}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes={`${Math.ceil(img.width)}px`}
                   style={{ objectFit: 'cover' }}
                 />
               </div>

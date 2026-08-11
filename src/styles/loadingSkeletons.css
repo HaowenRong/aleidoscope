@@ -17,7 +17,7 @@
   height: fit-content;
   overflow: hidden;
   display:grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 50% 50%;
   grid-row: auto auto;
   gap: 4px;
 } .imageBoardLoadingContainer .card {

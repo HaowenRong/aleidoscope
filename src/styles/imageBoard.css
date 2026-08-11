@@ -1,4 +1,12 @@
+.image-board-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+}
+
 .image-board {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;

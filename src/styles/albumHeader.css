@@ -53,6 +53,19 @@
   box-shadow: inset 0 0 25px 10px rgba(60, 60, 60, 0.5);
 }
 
+
+.group-header {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 100px;
+} .group-header .title {
+  color: var(--foreground);
+} .group-header .desc {
+  color: var(--foreground);
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .album-header {
     flex-direction: column;
