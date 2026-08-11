@@ -44,6 +44,7 @@ export default function Banner({ images = [], interval = 5000 }) {
               priority={i === 0}
               quality={75}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
+              loading='eager'
             />
           </div>
         ))}

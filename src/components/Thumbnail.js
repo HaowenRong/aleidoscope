@@ -16,8 +16,6 @@ export default function Thumbnail({ thumbnail }) {
     setLoading(false)
   }, [thumbnail])
 
-  console.log(albumCoverUrl)
-
   if (loading) {
     return (<ThumbnailSkeleton />)
   }

@@ -32,47 +32,25 @@ export async function getAlbums() {
 export async function getAlbum(urlName) {
   const { data, error } = await supabase
     .from('albums')
-    .select('*')
-    .eq('url_name', urlName)
-    .single()
-
-  if (error) throw error
-  return data
-}
-
-// get album data along with groups and images
-export async function getAlbumWithAll(urlName) {
-  const { data, error } = await supabase
-    .from('albums')
-    .select(
-      `
+    .select(`
       *,
       groups (
         *,
-        images (
-          *
-        )
+        images (*)
       )
-    `
-    )
+    `)
     .eq('url_name', urlName)
     .order('sort_order', { referencedTable: 'groups.images', ascending: true })
     .single()
 
   if (error) throw error
-  return data
-}
 
-// get groups in an album
-export async function getAlbumGroups(albumId) {
-  const { data, error } = await supabase
-    .from('groups')
-    .select('*')
-    .eq('album_id', albumId)
-    .order('date', { ascending: true })
+  const photo_count = data.groups.reduce(
+    (sum, group) => sum + group.images.length,
+    0
+  )
 
-  if (error) throw error
-  return data
+  return { ...data, photo_count }
 }
 
 // get all groups as an array
