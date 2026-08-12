@@ -45,7 +45,7 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
   // build rows based on image dimentions
   function buildRows(items) {
     const targetHeight = 420
-    const gap          = 20
+    const gap          = 4
 
     const builtRows = []
     let row      = []

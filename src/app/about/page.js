@@ -4,7 +4,7 @@ import '../../styles/globals.css'
 import '../../styles/layout.css'
 import '../../styles/about.css'
 import Image from 'next/image'
-import { getImageUrl } from '@/app/api/supabase'
+import { getImageUrl } from '../api/supabase'
 
 export default function About() {
 
