@@ -10,16 +10,18 @@ export default function GroupBoard({ groups }) {
   useEffect(() => {
     if (!gridRef.current) return
 
+    let cols = groups.length > 1 ? 2 : 1
+
     const observer = new ResizeObserver(([entry]) => {
       const gridWidth = entry.contentRect.width
       const columnGap = 4
-      const width     = (gridWidth - columnGap) / 2
+      const width     = (gridWidth - columnGap) / cols
       setColWidth(width)
     })
 
     observer.observe(gridRef.current)
     return () => observer.disconnect()
-  }, [])
+  }, [groups])
 
     return (
     <div ref={gridRef} className='image-board-container'>

@@ -43,6 +43,8 @@
 
 @media (max-width: 768px) {
   .banner {
-    height: 70svh;
+    height: calc(70svh);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
 }

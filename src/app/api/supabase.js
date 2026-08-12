@@ -60,9 +60,13 @@ export async function getAllGroups() {
     .select(`
       url_name,
       groups (
-        *
+        *,
+        images (
+          *
+        )
       )
     `)
+    .order('sort_order', { referencedTable: 'groups.images', ascending: true })
 
   if (error) throw error
 

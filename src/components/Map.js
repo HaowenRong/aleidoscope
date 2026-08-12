@@ -10,13 +10,24 @@ import L from 'leaflet';
 import { photoMarker } from './photoMarker';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-export default function Map({ markerData }) {
+export default function Map({ markerData, selectGroups }) {
   const mapRef = useRef(null)
 
-  const handleMarkerClick = (album) => {
-    mapRef.current.flyTo([album.lat, album.long], 8, {
-      duration: 1.5,
+  const flyTo = (lat, long, zoom=10, duration=1.5) => {
+    mapRef.current.flyTo([lat, long], zoom, {
+      duration: duration,
     })
+  }
+
+  const calcGroupCenter = (groups) => {
+    const bounds = L.latLngBounds(groups.map(m => [m.lat, m.long]))
+    const center = bounds.getCenter()
+    const zoom   = mapRef.current.getBoundsZoom(bounds.pad(0.2), false)
+
+    return {
+      center: center,
+      zoom:   zoom
+    }
   }
 
   return (
@@ -35,7 +46,7 @@ export default function Map({ markerData }) {
       worldCopyJump={true}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
         attribution='&copy; OpenStreetMap contributors &copy; CARTO'
       />
       <MarkerClusterGroup
@@ -48,7 +59,7 @@ export default function Map({ markerData }) {
           return L.divIcon({
             className: 'icon-cluster',
             html: `
-              <div class='cluster' style="
+              <div class='cluster' style='
                 position: relative;
                 width: 120px;
                 height: 120px;
@@ -56,9 +67,9 @@ export default function Map({ markerData }) {
                 overflow: hidden;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.4);
                 border: 2px solid white;
-              ">
-                <img src="${firstImage}" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-                <div style="
+              '>
+                <img src='${firstImage}' style='width: 100%; height: 100%; object-fit: cover; display: block;' />
+                <div style='
                   position: absolute;
                   bottom: 0; left: 0; right: 0;
                   color: white;
@@ -67,16 +78,30 @@ export default function Map({ markerData }) {
                   text-align: center;
                   text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 6px rgba(0,0,0,0.6);
                   padding: 4px 0;
-                ">${count}</div>
+                '>${count}</div>
               </div>
             `,
             iconSize: [120, 120],
           })
         }}
+        zoomToBoundsOnClick={false}
+        eventHandlers={{
+          clusterclick: (e) => {
+
+            const clickedCluster = e.layer
+            const childMarkers   = clickedCluster.getAllChildMarkers()
+            const groups         = childMarkers.map(m => m.groupData)
+            selectGroups(groups)
+
+            const groupCenter = calcGroupCenter(groups)
+            flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
+          }
+        }}
+
       >
         {markerData.map((group) => {
           const customIcon = photoMarker({
-            coverPhoto: `public/${group.album_url_name}/${group.title}/${group.cover_photo}`,
+            coverPhoto: `public/${group.album_url_name}/${group.url_name}/${group.cover_photo}`,
           })
 
           return (
@@ -84,7 +109,16 @@ export default function Map({ markerData }) {
               key={group.id}
               position={[group.lat, group.long]}
               icon={customIcon}
-              eventHandlers={{ click: () => handleMarkerClick(group) }}
+              ref={(marker) => { // store group data in marker for cluster to retrieve
+                if (marker) marker.groupData = group
+              }}
+
+              eventHandlers={{
+                click: () => {
+                  flyTo(group.lat, group.long)
+                  selectGroups([group])
+                }
+              }}
             />
           )
         })}
