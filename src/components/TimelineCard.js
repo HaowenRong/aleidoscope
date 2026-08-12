@@ -17,11 +17,11 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
         {albumCover && (
           <Image
             src     = {albumCoverUrl}
-            alt     = {'imageAlt'}
+            alt     = {albumCoverUrl}
             width   = {1000}
             height  = {1000}
             style   = {{ borderRadius: '5px' }}
-            loading = 'lazy'
+            loading = 'eager'
           />
         )}
       </div>
