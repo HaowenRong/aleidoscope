@@ -55,11 +55,28 @@ export default function About() {
           </p>
           <br></br>
           <p className='about-desc'>
-            I also wanted to make sure that the site was comfortable to navigate. As mobile devices are so prevalent (probably the primary device this site will be viewed on) and still getting bigger, I wanted to ensure that all navigation was within the thumb zone. So on mobile displays the navigation is moved to bottom, which is a design pattern that I hope becomes more common.
+            I also wanted to make sure that the site was comfortable to navigate. As mobile devices are so prevalent (probably the primary device this site will be viewed on), I wanted to ensure that all navigation was within the thumb zone. So on mobile displays the navigation is moved to bottom, which is a design pattern that I hope becomes more common.
+          </p>
+        </div>
+
+        <div className='about-card'>
+          <h1 className='about-title'>Future plans</h1>
+          <p className='about-desc'>
+            While I have completed my initial plans for the website, the website is still in development and in the future I plan to:
+          </p>
+          <br></br>
+          <p className='about-desc'>
+            - Populate the site with more photos
+            <br />
+            - Write descriptions and notes for the albums, groups, and images (if I have anything I want to say about it)
+            <br />
+            - Obtain a domain for the website
+            <br />
+
           </p>
         </div>
 
       </div>
     </main>
-  );
+  )
 }
