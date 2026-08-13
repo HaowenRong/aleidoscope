@@ -4,7 +4,7 @@ import '../../styles/layout.css'
 import '../../styles/atlas.css'
 import dynamic from 'next/dynamic';
 import GroupBoard from '@/components/GroupBoard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getAllGroups } from '../api/supabase';
 
 const Map = dynamic(() => import('@/components/Map'), {
@@ -12,15 +12,21 @@ const Map = dynamic(() => import('@/components/Map'), {
   loading: () => <p className='loading-map'>Loading map…</p>,
 })
 
-const groupsData = await getAllGroups()
-
 export default function Atlas() {
-  const [groups, setGroups] = useState([])
-  const [focus,  setFocus]  = useState('atlas')
+  const [allGroups,      setAllGroups]      = useState([])
+  const [selectedGroups, setSelectedGroups] = useState([])
+  const [focus,          setFocus]          = useState('atlas')
 
   useEffect(() => {
-    setFocus('atlas-sidebar')
-  }, [groups])
+    getAllGroups().then(setAllGroups)
+  }, [])
+
+  const selectAndFocus = useCallback((groups) => {
+    setSelectedGroups(groups)
+    if (groups.length < 2) {
+      setFocus('atlas-sidebar')
+    }
+  }, [])
 
   return (
     <main className='main'>
@@ -30,14 +36,19 @@ export default function Atlas() {
           tabIndex='0'
           onClick={() => setFocus('atlas')}
         >
-          <Map markerData={groupsData} selectGroups={setGroups} />
+          <Map markerData={allGroups} selectGroups={selectAndFocus} focus={focus} />
         </div>
         <div
           className={`atlas-sidebar ${focus === 'atlas-sidebar' ? 'expand' : 'compress'}`}
           tabIndex='0'
           onClick={() => setFocus('atlas-sidebar')}
         >
-          <GroupBoard groups={groups}   />
+          {selectedGroups.length === 0 ? (
+            <p>Select a marker or cluster from the map to view its contents.</p>
+          ) : (
+            <br></br>
+          )}
+          <GroupBoard groups={selectedGroups}  />
         </div>
       </div>
     </main>

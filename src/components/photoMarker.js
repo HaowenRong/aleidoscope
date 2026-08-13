@@ -7,7 +7,7 @@ export function photoMarker({ coverPhoto, size = 100 }) {
   const iconUrl = getImageUrl(coverPhoto)
 
   return new L.DivIcon({
-    className: 'marker',
+    className: 'marker-icon',
     html: `
       <div class='marker' style="
         width: ${size}px;

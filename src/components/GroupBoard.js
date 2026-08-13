@@ -10,7 +10,7 @@ export default function GroupBoard({ groups }) {
   useEffect(() => {
     if (!gridRef.current) return
 
-    const isMobileView = window.matchMedia('(max-width: 768px)');
+    const isMobileView = window.matchMedia('(max-width: 768px)').matches;
 
     let cols = groups.length > 1 ? 2 : 1
     cols = isMobileView ? 1 : cols

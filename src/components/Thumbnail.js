@@ -6,7 +6,6 @@ import { getImageUrl } from '@/app/api/supabase'
 import ThumbnailSkeleton from './ThumbnailSkeleton'
 
 export default function Thumbnail({ thumbnail }) {
-  console.log(thumbnail)
   const [loading,       setLoading]       = useState(true)
   const [albumCoverUrl, setAlbumCoverUrl] = useState(null)
 

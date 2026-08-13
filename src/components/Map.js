@@ -4,22 +4,34 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useMemo, memo, useCallback } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import { photoMarker } from './photoMarker';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-export default function Map({ markerData, selectGroups }) {
+function Map({ markerData, selectGroups, focus }) {
   const mapRef = useRef(null)
 
-  const flyTo = (lat, long, zoom=10, duration=1.5) => {
-    mapRef.current.flyTo([lat, long], zoom, {
-      duration: duration,
-    })
-  }
+  useEffect(() => {
+    if (!mapRef.current) return
+  }, [])
 
-  const calcGroupCenter = (groups) => {
+  useEffect(() => {
+    setTimeout(() => {
+      mapRef.current.invalidateSize()
+    }, 200)
+  }, [focus])
+
+  const flyTo = useCallback((lat, long, zoom = 10, duration = 1.5) => {
+    setTimeout(() => {
+      mapRef.current.flyTo([lat, long], zoom, {
+        duration: duration,
+      })
+    }, 200)
+  }, [])
+
+  const calcGroupCenter = useCallback((groups) => {
     const bounds = L.latLngBounds(groups.map(m => [m.lat, m.long]))
     const center = bounds.getCenter()
     const zoom   = mapRef.current.getBoundsZoom(bounds.pad(0.2), false)
@@ -28,7 +40,16 @@ export default function Map({ markerData, selectGroups }) {
       center: center,
       zoom:   zoom
     }
-  }
+  }, [])
+
+  const markers = useMemo(() => {
+    return markerData.map((group) => ({
+      group,
+      icon: photoMarker({
+        coverPhoto: `public/${group.album_url_name}/${group.url_name}/${group.cover_photo}`,
+      }),
+    }))
+  }, [markerData])
 
   return (
     <MapContainer
@@ -44,6 +65,7 @@ export default function Map({ markerData, selectGroups }) {
       ]}
       maxBoundsViscosity={1.0}
       worldCopyJump={true}
+      zoomControl={false}
     >
       <TileLayer
         url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
@@ -87,7 +109,8 @@ export default function Map({ markerData, selectGroups }) {
         zoomToBoundsOnClick={false}
         eventHandlers={{
           clusterclick: (e) => {
-
+            e.originalEvent?.stopPropagation()
+            e.originalEvent?.stopImmediatePropagation()
             const clickedCluster = e.layer
             const childMarkers   = clickedCluster.getAllChildMarkers()
             const groups         = childMarkers.map(m => m.groupData)
@@ -97,32 +120,28 @@ export default function Map({ markerData, selectGroups }) {
             flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
           }
         }}
-
       >
-        {markerData.map((group) => {
-          const customIcon = photoMarker({
-            coverPhoto: `public/${group.album_url_name}/${group.url_name}/${group.cover_photo}`,
-          })
-
-          return (
-            <Marker
-              key={group.id}
-              position={[group.lat, group.long]}
-              icon={customIcon}
-              ref={(marker) => { // store group data in marker for cluster to retrieve
-                if (marker) marker.groupData = group
-              }}
-
-              eventHandlers={{
-                click: () => {
-                  flyTo(group.lat, group.long)
-                  selectGroups([group])
-                }
-              }}
-            />
-          )
-        })}
+        {markers.map(({ group, icon }) => (
+          <Marker
+            key={group.id}
+            position={[group.lat, group.long]}
+            icon={icon}
+            eventHandlers={{
+              click: (e) => {
+                e.originalEvent?.stopPropagation()
+                e.originalEvent?.stopImmediatePropagation()
+                flyTo(group.lat, group.long)
+                selectGroups([group])
+              }
+            }}
+            ref={(marker) => {
+              if (marker) marker.groupData = group
+            }}
+          />
+        ))}
       </MarkerClusterGroup>
     </MapContainer>
   )
 }
+
+export default memo(Map)
