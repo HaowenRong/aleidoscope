@@ -4,9 +4,10 @@
   width: 100vw;
   height: calc(100svh - 100px);
   padding: 10px;
+  overflow: hidden;
 } .atlas-container .atlas {
   position: relative;
-  width: 100%;
+  width: 50%;
   height: 100%;
   border-radius: 10px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
@@ -20,14 +21,20 @@
   border-radius: 10px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   pointer-events: none;
-  z-index: 1000;
+  z-index: 400;
 }
 
 .atlas-container .atlas-sidebar {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  overflow: scroll;
+  position: absolute;
+  width: 50%;
+  height: 100svh;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  padding-top: 110px;
+  overflow: auto;
+  scroll-padding-top: 100px;
+  overflow-x: hidden;
 }
 
 .loading-map {
@@ -63,8 +70,12 @@
     height: calc(100svh);
   } .atlas-container .atlas {
     transition: height 0.3s ease;
+    width: 100%;
   } .atlas-container .atlas-sidebar {
+    position: relative;
+    width: 100%;
     transition: height 0.3s ease;
+    padding: 0px;
     padding-bottom: 100px;
     scrollbar-width: none;
   } .atlas-container .expand {

@@ -46,7 +46,7 @@ export default function Atlas() {
           {selectedGroups.length === 0 ? (
             <p>Select a marker or cluster from the map to view its contents.</p>
           ) : (
-            <br></br>
+            <></>
           )}
           <GroupBoard groups={selectedGroups}  />
         </div>

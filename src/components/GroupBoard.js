@@ -14,10 +14,10 @@ export default function GroupBoard({ groups }) {
 
     let cols = groups.length > 1 ? 2 : 1
     cols = isMobileView ? 1 : cols
+    let columnGap = isMobileView ? 0 : 20
 
     const observer = new ResizeObserver(([entry]) => {
       const gridWidth = entry.contentRect.width
-      const columnGap = 4
       const width     = (gridWidth - columnGap) / cols
       setColWidth(width)
     })
@@ -27,7 +27,7 @@ export default function GroupBoard({ groups }) {
   }, [groups])
 
     return (
-    <div ref={gridRef} className='image-board-container'>
+    <div ref={gridRef} className='groups-container'>
       {groups.map(group => (
         <ImageBoard
           key            = {group.id}

@@ -100,7 +100,7 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
   }
 
   return (
-    <div className='image-board'>
+    <div className='group-board'>
       <GroupHeader title={title} desc={desc} />
       {selected !== null && imgArr[selected] && (
         <div className='lightbox'>
@@ -129,34 +129,36 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
         </div>
       )}
 
-      {rows.map((row, r) => (
-        <div key={r} className='image-row'>
-          {row.map((img, i) => (
-            <button
-              key={i}
-              className='image-btn'
-              onClick={() => showLightbox(img)}
-            >
-              <div
-                className='image'
-                style={{
-                  width:  img.width,
-                  height: img.height,
-                  flexShrink: 0
-                }}
+      <div className='images-container'>
+        {rows.map((row, r) => (
+          <div key={r} className='image-row'>
+            {row.map((img, i) => (
+              <button
+                key={i}
+                className='image-btn'
+                onClick={() => showLightbox(img)}
               >
-                <Image
-                  src={img.src}
-                  alt={`Image ${i + 1}`}
-                  fill
-                  sizes={`${Math.ceil(img.width)}px`}
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-            </button>
-          ))}
-        </div>
-      ))}
+                <div
+                  className='image'
+                  style={{
+                    width:  img.width,
+                    height: img.height,
+                    flexShrink: 0
+                  }}
+                >
+                  <Image
+                    src={img.src}
+                    alt={`Image ${i + 1}`}
+                    fill
+                    sizes={`${Math.ceil(img.width)}px`}
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

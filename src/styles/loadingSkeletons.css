@@ -1,53 +1,116 @@
-.thumbnailSkeleton {
-  background: linear-gradient(
-    120deg,
-    transparent 40%,
-    #f2f2f2 50%,
-    transparent 60%
-  );
-  width: 100%;
-  height: 100%;
-  animation: shimmer 1.5s ease infinite;
+.thumbnail {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: min(500px, 100%);
+  height: min(500px, 100%);
+  border-radius: 1000px;
+  overflow: hidden;
 }
 
+.thumbnail .shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1000px;
+  box-shadow: inset 0 0 25px 10px rgba(60, 60, 60, 0.5);
+}
 
-.imageBoardLoadingContainer {
-  width: 100%;
+.thumbnailSkeleton {
   position: relative;
-  height: fit-content;
-  overflow: hidden;
-  display:grid;
-  grid-template-columns: 50% 50%;
-  grid-row: auto auto;
-  gap: 4px;
-} .imageBoardLoadingContainer .card {
   width: 100%;
-  height: 240px;
+  height: 100%;
+  overflow: hidden;
   background-color: #cfcfcf;
 }
 
-.imageBoardLoadingContainer::after {
+.thumbnailSkeleton::after {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
-    120deg,
-    transparent 40%,
-    #f2f2f2 50%,
-    transparent 60%
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
   );
+  transform: translateX(-100%);
   animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
-  0% {
-    transform: translate(-25%, -25%);
-  }
   100% {
-    transform: translate(25%, 25%);
+    transform: translateX(100%);
+  }
+}
+
+.groupBoardLoadingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  overflow: hidden;
+} 
+.groupBoardLoadingContainer .title,
+.groupBoardLoadingContainer .desc,
+.groupBoardLoadingContainer .imageBoard .card {
+  position: relative;
+  overflow: hidden;
+  background-color: #cfcfcf;
+} .groupBoardLoadingContainer .title {
+  width: 80%;
+  height: 42px;
+  border-radius: 100px;
+} .groupBoardLoadingContainer .desc {
+  width: 50%;
+  height: 30px;
+  border-radius: 100px;
+} .groupBoardLoadingContainer .imageBoard {
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas:
+    "a b"
+    "c c";
+  grid-row: auto auto;
+  gap: 4px;
+  border-radius: 10px;
+} .groupBoardLoadingContainer .imageBoard .card {
+  width: 100%;
+  height: 420px;
+} .groupBoardLoadingContainer .imageBoard .card:nth-child(1) {
+  grid-area: a;
+} .groupBoardLoadingContainer .imageBoard .card:nth-child(2) {
+  grid-area: b;
+} .groupBoardLoadingContainer .imageBoard .card:nth-child(3) {
+  grid-area: c;
+}
+.groupBoardLoadingContainer .title::after,
+.groupBoardLoadingContainer .desc::after,
+.groupBoardLoadingContainer .imageBoard .card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
   }
 }
 

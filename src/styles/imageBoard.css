@@ -1,31 +1,37 @@
-.image-board-container {
+.groups-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px;
+  gap: 20px;
   width: 100%;
 }
 
-.image-board {
+.group-board {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
+} .group-board .images-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 4px;
-} .image-board .image-row {
+  border-radius: 10px;
+  overflow: hidden;
+} .group-board .images-container .image-row {
   display: flex;
   gap: 4px;
-}.image-board .image-btn {
+}.group-board .images-container .image-btn {
   all: unset;
   cursor: zoom-in;
   display: block;
-}.image-board .image-btn .image {
+}.group-board .images-container .image-btn .image {
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-}.image-board .image-btn .image img{
+}.group-board .images-container .image-btn .image img{
     transition:
       transform 0.2s ease;
-}.image-board .image-btn .image:hover img {
+}.group-board .images-container .image-btn .image:hover img {
   transform: scale(1.05);
 }
 
@@ -41,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 10002;
   user-select: none;
 } .lightbox .image-container {
   position: relative;
@@ -145,7 +151,8 @@
     padding-left: 15px;
   }
 
-  .image-board-container {
+  .groups-container {
     grid-template-columns: 1fr;
+    gap: 0px;
   }
 }
