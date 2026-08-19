@@ -2,7 +2,7 @@
 export default function TimelineInfo({ title, desc, date, numPhotos }) {
 
   return (
-    <div className={'info-section }'}>
+    <div className={'info-section'}>
       <div className={'album-data'}>
         <p>{date}</p>
         <p className='separator'>·</p>

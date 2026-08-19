@@ -18,9 +18,9 @@
   align-items: center;
   justify-content: center;
   gap: 5rem;
-  margin-bottom: 40px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  padding-bottom: 1rem;
   transition:
     color 0.3s ease,
     gap 0.3s ease,
@@ -31,7 +31,8 @@
   gap: 6rem;
   padding-left: 0rem;
   padding-right: 0rem;
-} .timeline-frame .image-section {
+} .timeline-frame .timeline-card {
+  position: relative;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -40,11 +41,38 @@
   height: 100%;
   width: 50%;
   flex-shrink: 1;
-} .timeline-frame .image-section img {
+} .timeline-frame .timeline-card img {
   max-width: 100%;
   width: auto;
   height: 100%;
-} .timeline-frame .info-section {
+}
+
+.timeline-frame .timeline-card .overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 50% at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  padding: 10px;
+  padding-bottom: 0px;
+} .timeline-frame .timeline-card .overlay .title {
+  color: rgba(255, 255, 255);
+  font-size: 36px;
+  font-weight: bolder;
+}  .timeline-frame .timeline-card .overlay .desc {
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+
+.timeline-frame .info-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,7 +81,9 @@
 } .timeline-frame .info-section .album-data {
   display: flex;
   gap: 8px;
-  font-size: 15px;
+  display: flex;
+  font-weight: bold;
+  font-size: 32px;
 } .timeline-frame .info-section .album-data .separator {
   all: unset;
   user-select: none;
@@ -86,7 +116,7 @@
 
 .timeline-frame.right {
   flex-direction: row-reverse;
-} .timeline-frame.right .image-section {
+} .timeline-frame.right .timeline-card {
   flex-direction: row;
 } .timeline-frame.right .info-section {
   text-align: end;
@@ -127,13 +157,13 @@
     padding-right: 0;
   }.timeline-frame.right {
     flex-direction: column;
-  } .timeline-frame .image-section {
+  } .timeline-frame .timeline-card {
     max-width: none;
     width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }.timeline-frame .image-section img {
+  }.timeline-frame .timeline-card img {
     width: 100%;
     height: auto;
     aspect-ratio: auto;

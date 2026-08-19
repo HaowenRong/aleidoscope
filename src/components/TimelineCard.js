@@ -11,28 +11,36 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
 
   const albumCoverUrl = getImageUrl(albumCover)
 
+  const [year, month, day] = albumDate.split('-');
+
   return (
     <Link href={`/album/${urlName}`} className={`timeline-frame ${align}`}>
-      <div className='image-section'>
+      <div className='timeline-card'>
         {albumCover && (
-          <Image
-            src     = {albumCoverUrl}
-            alt     = {albumCoverUrl}
-            width   = {1000}
-            height  = {1000}
-            style   = {{ borderRadius: '5px' }}
-            loading = 'eager'
-          />
+          <>
+            <Image
+              src     = {albumCoverUrl}
+              alt     = {albumCoverUrl}
+              width   = {1000}
+              height  = {1000}
+              style   = {{ borderRadius: '5px', width: '100%', height: 'auto', display: 'block' }}
+              loading = 'eager'
+            />
+            <div className='overlay'>
+              <h1 className='title'>{albumName}</h1>
+              <p className='desc'>{albumDesc}</p>
+            </div>
+          </>
         )}
       </div>
+
       <div className='dot' />
-      <TimelineInfo
-        title         = {albumName}
-        desc          = {albumDesc}
-        date          = {albumDate}
-        numPhotos     = {numPhotos}
-        textAlignment = {align}
-      />
+
+      <div className={'info-section'}>
+        <div className={'album-data'}>
+          {year}.{month}.{day}
+        </div>
+      </div>
     </Link>
   )
 }
