@@ -7,13 +7,13 @@ import '../styles/imageBoard.css'
 import { getImageUrl } from '@/app/api/supabase'
 import { useMemo } from 'react'
 import GroupHeader from './GroupHeader'
+import { probeHeader } from '@/app/api/supabase'
 
 export default function ImageBoard({ images, containerWidth, title, desc }) {
-  const [loading,  setLoading]  = useState(true)
-  const [rows,     setRows]     = useState([])
-  const [selected, setSelected] = useState(null)
-
-  const loadedItemsRef = useRef([])
+  const [loading,       setLoading]       = useState(true) // tracks state for loading skeleton
+  const [imgProperties, setImgProperties] = useState([]) // stores image properties 
+  const [rows,          setRows]          = useState([])
+  const [selected,      setSelected]      = useState(null) // tracks light box index
 
   // cache image urls
   const imageUrls = useMemo(
@@ -21,25 +21,24 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
     [images]
   )
 
-  // load images to get their dimentions
+  // probe images to get their dimentions
+  const imageUrlsKey = imageUrls.join(',')
+
   useEffect(() => {
-    Promise.all(
-      imageUrls.map(src => new Promise(resolve => {
-        const img = new window.Image()
-        img.src = src
-        img.onload = () => resolve({ src, ratio: img.naturalWidth / img.naturalHeight })
-      }))
-    ).then(loaded => {
-      loadedItemsRef.current = loaded
+    setLoading(true)
+
+    probeHeader(imageUrls).then(results => {
+      setImgProperties(results)
       setLoading(false)
     })
-  }, [imageUrls])
+
+  }, [imageUrlsKey])
 
   // rebuild rows when loading finishes or container width changes
   useEffect(() => {
-    if (loading || loadedItemsRef.current.length === 0) return
+    if (loading || imgProperties.length === 0) return
     if (!containerWidth) return
-    setRows(buildRows(loadedItemsRef.current))
+    setRows(buildRows(imgProperties))
   }, [loading, containerWidth])
 
   // build rows based on image dimentions
@@ -152,6 +151,7 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
                     fill
                     sizes={`${Math.ceil(img.width)}px`}
                     style={{ objectFit: 'cover' }}
+                    loading='lazy'
                   />
                 </div>
               </button>

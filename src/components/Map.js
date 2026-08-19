@@ -57,7 +57,7 @@ function Map({ markerData, selectGroups, focus }) {
       center    = {[35.0, 100.0]}
       zoom      = {3}
       style     = {{ width: '100%', height: '100%' }}
-      minZoom   = {2}
+      minZoom   = {3}
       maxZoom   = {18}
       maxBounds = {[
         [-85, -Infinity],

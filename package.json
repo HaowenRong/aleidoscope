@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.5",
+    "image-size": "^2.0.2",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "next": "16.2.10",

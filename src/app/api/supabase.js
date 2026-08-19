@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import imageSize from 'image-size'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -98,14 +99,6 @@ export async function getGroupWithImages(groupId) {
   return data
 }
 
-// get the path to an image
-export function getImageUrl(path) {
-  if (!path) return null
-
-  const { data } = supabase.storage.from('albums').getPublicUrl(path)
-  return data.publicUrl
-}
-
 
 // get banner images
 export async function getBanners() {
@@ -117,6 +110,40 @@ export async function getBanners() {
 
   return data.map(
     (banner) => supabase.storage.from('albums').getPublicUrl(banner.file_path).data.publicUrl
+  )
+}
+
+
+// get the path to an image
+export function getImageUrl(path, suffix='') {
+  if (!path) return null
+
+  path = (path + suffix)
+
+  const { data } = supabase.storage.from('albums').getPublicUrl(path)
+  return data.publicUrl
+}
+
+// get image dimentions from headers
+export async function probeHeader(urls) {
+  return Promise.all(
+    urls.map(async (url) => {
+      try {
+        const res = await fetch(url, {
+          headers: { Range: 'bytes=0-65535' }
+        })
+        const buffer = Buffer.from(await res.arrayBuffer())
+        const { width, height } = imageSize(buffer)
+        return {
+          src:    url,
+          width:  width,
+          height: height,
+          ratio:  width / height
+        }
+      } catch {
+        return { src: url, ratio: 1 }
+      }
+    })
   )
 }
 
