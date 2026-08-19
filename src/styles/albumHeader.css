@@ -1,21 +1,25 @@
+.album-container {
+  gap: 50px;
+}
+
 .album-header {
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
+  align-self: stretch;
   justify-content: center;
-  gap: 10px;
+  gap: 50px;
   width: 100%;
-  padding: 25px;
   box-sizing: border-box;
-  margin-bottom: 80px;
 }
 
 .album-header .album-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 70%;
+  margin-top: 100px;
+  margin-bottom: 20px;
 } .album-header .album-info .album-data {
   display: flex;
   gap: 8px;
@@ -30,7 +34,6 @@
 } .album-header .album-info .title {
   font-size: 36px;
   font-weight: 800;
-  margin-bottom: 10px;
 } .album-header .album-info .desc {
   font-size: 16px;
   font-weight: 600;
@@ -66,15 +69,45 @@
   font-weight: bold;
 }
 
+.metadata-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 10px;
+  justify-content: space-evenly;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+} .metadata-bar .data-point {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  padding: 5px;
+  text-align: center;
+} .metadata-bar .data-point:not(:first-child) {
+  border-left: 1px solid rgba(128, 128, 128, 0.3);
+} .metadata-bar .data-point .label {
+  font-size: large;
+  font-weight: normal;
+} .metadata-bar .data-point .data {
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .album-header {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 30px;
     padding: 0;
     padding-top: 0;
     margin-bottom: 30px;
+    align-items: center
   } .album-header .album-info {
     width: 100%;
+    margin: 0px;
+    gap: 20px;
   }
 
   .album-header .thumbnail {

@@ -10,20 +10,25 @@ export default async function Album({ params }) {
   const { album } = await params
 
   const albumData = await getAlbum(album)
+  console.log(albumData)
 
   return (
     <main className='main'>
-      <div className='content'>
+      <div className='content album-container'>
         <BackButton />
         <AlbumHeader
           title     = {albumData.title}
           desc      = {albumData.description}
-          date      = {albumData.date}
-          numPhotos = {albumData.photo_count}
+          dataPoints={[
+            { title: 'Groups',      data: albumData.groups.length },
+            { title: 'Photos',      data: albumData.photo_count   },
+            { title: 'Album Date ', data: albumData.date          },
+          ]}
           thumbnail = {`public/${albumData.url_name}/${albumData.cover_photo}`}
+
         />
-        <GroupBoard groups={albumData.groups} />
+        <GroupBoard groups={albumData.groups}  />
       </div>
     </main>
-  );
+  )
 }
