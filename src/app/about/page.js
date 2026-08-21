@@ -27,6 +27,10 @@ export default function About() {
         </div>
 
         <div className='about-card'>
+          <p className='about-desc'>Last Update: 2026.08.21</p>
+        </div>
+
+        <div className='about-card'>
           <h1 className='about-title'>Who am I?</h1>
           <p className='about-desc'>
             I’m Alex, a photography hobbyist who loves exploring the world and taking some photos along the way. I mainly take photos of landscapes and scenery but I’ll take pictures of anything I find interesting. I’m currently using a Sony a6400 with its kit lens, along with some polarising and star filters, and hope to experiment with more gear in the future!
@@ -72,7 +76,6 @@ export default function About() {
             <br />
             - Obtain a domain for the website
             <br />
-
           </p>
         </div>
 

@@ -11,7 +11,9 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
 
   const albumCoverUrl = getImageUrl(albumCover)
 
-  const [year, month, day] = albumDate.split('-');
+  const [year, month, day] = albumDate.replace(/\b0(\d)/g, '$1').split('-');
+  const [albumNameFirst, ...rest] = albumName.split(' ');
+  const albumNameRest = rest.join(" ");
 
   return (
     <Link href={`/album/${urlName}`} className={`timeline-frame ${align}`}>
@@ -27,8 +29,12 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
               loading = 'eager'
             />
             <div className='overlay'>
-              <h1 className='title'>{albumName}</h1>
-              <p className='desc'>{albumDesc}</p>
+              <h1 className='title'>{albumNameFirst}</h1>
+              <h1 className='title-side'>{albumNameRest}</h1>
+              <div className='footer'>
+                <p className='desc'>{albumDesc}</p>
+                <p className='date'>{year}.{month}.{day}</p>
+              </div>
             </div>
           </>
         )}
