@@ -17,7 +17,7 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
 
   return (
     <Link href={`/album/${urlName}`} className={`timeline-frame ${align}`}>
-      <div className='timeline-card'>
+      <div className='poster'>
         {albumCover && (
           <>
             <Image

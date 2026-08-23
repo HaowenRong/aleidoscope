@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import GroupBoard from '@/components/GroupBoard';
 import { useState, useEffect, useCallback } from 'react';
 import { getAllGroups } from '../api/supabase';
+import MetadataBar from '@/components/MetadataBar';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -13,16 +14,23 @@ const Map = dynamic(() => import('@/components/Map'), {
 })
 
 export default function Atlas() {
-  const [allGroups,      setAllGroups]      = useState([])
-  const [selectedGroups, setSelectedGroups] = useState([])
-  const [focus,          setFocus]          = useState('atlas')
+  const [allGroups,      setAllGroups]      = useState([]) // holds all the groups
+  const [selectedGroups, setSelectedGroups] = useState([]) // tracks the selected groups
+  const [selectedImages, setSelectedImages] = useState([]) // tracks the count of images selected
+  const [focus,          setFocus]          = useState('atlas') // tracks which section is in focus
 
   useEffect(() => {
     getAllGroups().then(setAllGroups)
   }, [])
 
+  useEffect(() => {
+    const totalImages = selectedGroups.reduce((sum, obj) => sum + obj.images.length, 0)
+    setSelectedImages(totalImages)
+  }, [selectedGroups])
+
   const selectAndFocus = useCallback((groups) => {
     setSelectedGroups(groups)
+
     if (groups.length < 2) {
       setFocus('atlas-sidebar')
     }
@@ -46,7 +54,10 @@ export default function Atlas() {
           {selectedGroups.length === 0 ? (
             <p>Select a marker or cluster from the map to view its contents.</p>
           ) : (
-            <></>
+            <MetadataBar dataPoints={[
+            { title: 'Groups', data: selectedGroups.length },
+            { title: 'Photos', data: selectedImages }
+          ]} />
           )}
           <GroupBoard groups={selectedGroups}  />
         </div>

@@ -1,6 +1,6 @@
 .groups-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
   width: 100%;
 }
@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10002;
+  z-index: 1003;
   user-select: none;
 } .lightbox .image-container {
   position: relative;

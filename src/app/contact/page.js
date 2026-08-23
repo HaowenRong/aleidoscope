@@ -17,9 +17,8 @@ export default function About() {
             <Image
               src     = {imageHeaderUrl}
               alt     = {'imageAlt'}
-              width   = {1000}
-              height  = {1000}
-              style={{ width: '100%', height: 'auto', borderRadius: '5px' }}
+              width   = {500}
+              height  = {500}
             />
           )}
         </div>

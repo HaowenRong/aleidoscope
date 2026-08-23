@@ -72,16 +72,15 @@
   position: relative;
   height: fit-content;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 25% 25% 50%;
   grid-template-areas:
-    "a b"
-    "c c";
+    "a b c";
   grid-row: auto auto;
   gap: 4px;
   border-radius: 10px;
 } .groupBoardLoadingContainer .imageBoard .card {
   width: 100%;
-  height: 420px;
+  height: 360px;
 } .groupBoardLoadingContainer .imageBoard .card:nth-child(1) {
   grid-area: a;
 } .groupBoardLoadingContainer .imageBoard .card:nth-child(2) {

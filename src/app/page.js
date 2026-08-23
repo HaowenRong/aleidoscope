@@ -29,5 +29,5 @@ export default async function Root() {
         ))}
       </div>
     </main>
-  );
+  )
 }

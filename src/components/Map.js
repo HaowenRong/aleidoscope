@@ -130,7 +130,7 @@ function Map({ markerData, selectGroups, focus }) {
               click: (e) => {
                 e.originalEvent?.stopPropagation()
                 e.originalEvent?.stopImmediatePropagation()
-                flyTo(group.lat, group.long)
+                flyTo(group.lat, group.long, 14)
                 selectGroups([group])
               }
             }}

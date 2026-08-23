@@ -22,7 +22,7 @@ export default async function Album({ params }) {
           dataPoints={[
             { title: 'Groups',      data: albumData.groups.length },
             { title: 'Photos',      data: albumData.photo_count   },
-            { title: 'Album Date ', data: albumData.date          },
+            { title: 'Album Date ', data: albumData.date          }
           ]}
           thumbnail = {`public/${albumData.url_name}/${albumData.cover_photo}`}
 

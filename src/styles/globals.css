@@ -21,7 +21,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-
+  user-select: none;
 }
 
 .main {
@@ -73,7 +73,7 @@ a {
   }
 
   .content {
-    padding: 15px;
-    padding-top: 30px;
+    padding: 10px;
+    padding-top: 20px;
   }
 }

@@ -14,6 +14,7 @@
 } .banner .banner-dots {
   position: absolute;
   display: flex;
+  align-items: center;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -24,11 +25,13 @@
   width: 10px;
   height: 10px;
   background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 } .banner .banner-dot.active {
   background-color: white;
+  border: 1px solid rgba(128, 128, 128, 0.3);
 }
 
 .banner::after {
@@ -44,7 +47,8 @@
 @media (max-width: 768px) {
   .banner {
     height: calc(70svh);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+  } .banner .banner-dot {
+    width:  12px;
+    height: 12px;
   }
 }

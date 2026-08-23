@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.2",
     "@supabase/supabase-js": "^2.110.5",
     "image-size": "^2.0.2",
     "leaflet": "^1.9.4",
