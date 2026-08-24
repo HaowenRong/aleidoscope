@@ -1,4 +1,3 @@
-import TimelineInfo from './timelineInfo'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../styles/timeline.css'

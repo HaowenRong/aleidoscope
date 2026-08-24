@@ -13,7 +13,7 @@
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(10px);
   user-select: none;
-  z-index: 1001;
+  z-index: 1002;
 
   transition: height 0.3s ease;
 }
@@ -109,7 +109,6 @@
   all: unset;
   position: fixed;
   display: flex;
-  user-select: none;
   cursor: pointer;
   width: 60px;
   height: 60px;
@@ -121,6 +120,7 @@
   justify-content: center;
   font-size: 30px;
   line-height: 1;
+  color: var(--foreground);
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(128, 128, 128, 0.3);
   -webkit-backdrop-filter: blur(5px);
@@ -128,6 +128,31 @@
   z-index: 2;
 } .backBtn:hover {
   border: 1px solid rgba(128, 128, 128, 1);
+}
+
+.navigationBtn {
+  all: unset;
+  display: flex;
+  cursor: pointer;
+  top: 100px;
+  border-radius: 100px;
+  align-items: center;
+  padding: 10px;
+  padding-right: 20px;
+  gap: 10px;
+  font-size: large;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+} .navigationBtn:hover {
+  border: 1px solid rgba(128, 128, 128, 1);
+} .navigationBtn .icon {
+  width:  40px;
+  height: 40px;
 }
 
 

@@ -16,10 +16,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   width: 70%;
-  margin-top: 100px;
-  margin-bottom: 20px;
+  gap: 10px;
 } .album-header .album-info .album-data {
   display: flex;
   gap: 8px;
@@ -32,10 +30,12 @@
   line-height: 0.39;
   user-select: none;
 } .album-header .album-info .title {
+  height: 100%;
   font-size: 36px;
   font-weight: 800;
 } .album-header .album-info .desc {
-  font-size: 16px;
+  width: 100%;
+  font-size: large;
   font-weight: 600;
 }
 
@@ -61,7 +61,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  height: 100px;
+  height: fit-content;
 } .group-header .title {
   color: var(--foreground);
 } .group-header .desc {
@@ -71,24 +71,27 @@
 
 .metadata-bar {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
-  padding: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-  border-radius: 100px;
+  padding: 10px;
+  border-radius: 10px;
   justify-content: space-evenly;
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(128, 128, 128, 0.3);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(10px);
+} .metadata-bar .row {
+  display: flex;
+  flex-direction: row;
+} .metadata-bar .row .bottom {
+  margin-top: 10px;
 } .metadata-bar .data-point {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-left: 10px;
   gap: 5px;
-  padding: 5px;
-  text-align: center;
 } .metadata-bar .data-point:not(:first-child) {
   border-left: 1px solid rgba(128, 128, 128, 0.3);
 } .metadata-bar .data-point .label {
@@ -96,6 +99,7 @@
   font-weight: normal;
 } .metadata-bar .data-point .data {
   font-weight: bold;
+  font-size: large;
 }
 
 @media (max-width: 768px) {
@@ -114,5 +118,9 @@
 
   .album-header .thumbnail {
     width: 70%;
+  }
+
+  .metadata-bar {
+    border-radius: 10px;
   }
 }
