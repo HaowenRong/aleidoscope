@@ -10,16 +10,21 @@ import L from 'leaflet';
 import { photoMarker } from './photoMarker';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-function Map({ markerData, selectGroups, focus }) {
+function Map({ markerData, selectedGroups, selectGroups, focus }) {
   const mapRef = useRef(null)
 
+  // fly to location of selected groups on groups change
   useEffect(() => {
-    if (!mapRef.current) return
-  }, [])
+    if (selectedGroups.length < 1) return
 
+    const groupCenter = calcGroupCenter(selectedGroups)
+    flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
+  }, [selectedGroups])
+
+  // resize the map after the focus changes
   useEffect(() => {
     setTimeout(() => {
-      mapRef.current.invalidateSize()
+      mapRef.current?.invalidateSize()
     }, 200)
   }, [focus])
 
@@ -115,9 +120,6 @@ function Map({ markerData, selectGroups, focus }) {
             const childMarkers   = clickedCluster.getAllChildMarkers()
             const groups         = childMarkers.map(m => m.groupData)
             selectGroups(groups)
-
-            const groupCenter = calcGroupCenter(groups)
-            flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
           }
         }}
       >
@@ -130,7 +132,6 @@ function Map({ markerData, selectGroups, focus }) {
               click: (e) => {
                 e.originalEvent?.stopPropagation()
                 e.originalEvent?.stopImmediatePropagation()
-                flyTo(group.lat, group.long, 14)
                 selectGroups([group])
               }
             }}

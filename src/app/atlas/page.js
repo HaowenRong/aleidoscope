@@ -5,8 +5,9 @@ import '../../styles/atlas.css'
 import dynamic from 'next/dynamic';
 import GroupBoard from '@/components/GroupBoard';
 import { useState, useEffect, useCallback } from 'react';
-import { getAllGroups } from '../api/supabase';
+import { getAllGroups, getAlbum } from '../api/supabase';
 import MetadataBar from '@/components/MetadataBar';
+import { useSearchParams } from 'next/navigation';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -19,9 +20,31 @@ export default function Atlas() {
   const [selectedImages, setSelectedImages] = useState([]) // tracks the count of images selected
   const [focus,          setFocus]          = useState('atlas') // tracks which section is in focus
 
+  // load all the groups
   useEffect(() => {
-    getAllGroups().then(setAllGroups)
+    getAllGroups()
+      .then(groups => setAllGroups(groups))
+      .catch(err => {
+        console.error('Failed to load groups:', err)
+      })
+
+    return
   }, [])
+
+  // get the album from params (if any)
+  const params = useSearchParams()
+  useEffect(() => {
+    if (params.size === 0) return
+
+    const albumUrl = params.get('album')
+    getAlbum(albumUrl)
+      .then(album => setSelectedGroups(album.groups))
+      .catch(err => {
+        console.error('Failed to load album:', err)
+      })
+
+      return
+  }, [params])
 
   useEffect(() => {
     const totalImages = selectedGroups.reduce((sum, obj) => sum + obj.images.length, 0)
@@ -44,7 +67,7 @@ export default function Atlas() {
           tabIndex='0'
           onClick={() => setFocus('atlas')}
         >
-          <Map markerData={allGroups} selectGroups={selectAndFocus} focus={focus} />
+          <Map markerData={allGroups} selectedGroups={selectedGroups} selectGroups={selectAndFocus} focus={focus} />
         </div>
         <div
           className={`atlas-sidebar ${focus === 'atlas-sidebar' ? 'expand' : 'compress'}`}
@@ -55,9 +78,10 @@ export default function Atlas() {
             <p>Select a marker or cluster from the map to view its contents.</p>
           ) : (
             <MetadataBar dataPoints={[
-            { title: 'Groups', data: selectedGroups.length },
-            { title: 'Photos', data: selectedImages }
-          ]} />
+                { title: 'Groups', data: selectedGroups.length },
+                { title: 'Photos', data: selectedImages }
+              ]}
+            />
           )}
           <GroupBoard groups={selectedGroups}  />
         </div>

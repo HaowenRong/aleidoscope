@@ -10,7 +10,6 @@ export default async function Album({ params }) {
   const { album } = await params
 
   const albumData = await getAlbum(album)
-  console.log(albumData)
 
   return (
     <main className='main'>
@@ -19,6 +18,7 @@ export default async function Album({ params }) {
         <AlbumHeader
           title     = {albumData.title}
           desc      = {albumData.description}
+          album     = {album}
           dataPoints={[
             { title: 'Groups',      data: albumData.groups.length },
             { title: 'Photos',      data: albumData.photo_count   },
