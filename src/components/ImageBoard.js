@@ -2,47 +2,36 @@
 
 import Image from 'next/image'
 import ImageBoardSkeleton from './ImageBoardSkeleton'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/imageBoard.css'
-import { getImageUrl } from '@/app/api/supabase'
-import { useMemo } from 'react'
 import GroupHeader from './GroupHeader'
 import { probeHeader } from '@/app/api/supabase'
 
-export default function ImageBoard({ images, containerWidth, title, desc }) {
+export default function ImageBoard({ images, containerWidth, title, desc, showLightbox }) {
   const [loading,       setLoading]       = useState(true) // tracks state for loading skeleton
   const [imgProperties, setImgProperties] = useState([]) // stores image properties 
   const [rows,          setRows]          = useState([])
-  const [selected,      setSelected]      = useState(null) // tracks light box index
-
-  // cache image urls
-  const imageUrls = useMemo(
-    () => images.map((path) => getImageUrl(path)),
-    [images]
-  )
-
-  // probe images to get their dimentions
-  const imageUrlsKey = imageUrls.join(',')
 
   useEffect(() => {
-    setLoading(true)
-
-    probeHeader(imageUrls).then(results => {
-      setImgProperties(results)
+    probeHeader(images.map(img => img.src)).then(results => {
+      const idedResults = results.map((result, i) => ({
+        ...result,
+        id: images[i].id
+      }))
+      setImgProperties(idedResults)
       setLoading(false)
     })
+  }, [images])
 
-  }, [imageUrlsKey])
-
-  // rebuild rows when loading finishes or container width changes
+  // rebuild rows on changes to width
   useEffect(() => {
     if (loading || imgProperties.length === 0) return
     if (!containerWidth) return
     setRows(buildRows(imgProperties))
-  }, [loading, containerWidth])
+  }, [loading, containerWidth, imgProperties])
 
   // build rows based on image dimentions
-  function buildRows(items) {
+  function buildRows(images) {
     const targetHeight = 520
     const gap          = 4
 
@@ -50,13 +39,13 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
     let row      = []
     let rowRatio = 0
 
-    items.forEach((item, i) => {
+    images.forEach((item, i) => {
       row.push(item)
       rowRatio += item.ratio
 
       const rowWidth = rowRatio * targetHeight + gap * (row.length - 1)
 
-      if (rowWidth >= containerWidth || i === items.length - 1) {
+      if (rowWidth >= containerWidth || i === images.length - 1) {
         const height = (containerWidth - gap * (row.length - 1)) / rowRatio
         builtRows.push(row.map(r => ({ ...r, width: r.ratio * height, height })))
         row      = []
@@ -67,33 +56,6 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
     return builtRows
   }
 
-  const imgArr = rows.flat()
-
-  // lightbox functions
-  function showLightbox(img) {
-    const index = imgArr.findIndex(i => i.src === img.src)
-    setSelected(index)
-  }
-
-  function prev() {
-    setSelected(i => (i === 0 ? 0 : i - 1))
-  }
-
-  function next() {
-    setSelected(i => (i === imgArr.length - 1 ? imgArr.length - 1 : i + 1))
-  }
-
-  useEffect(() => {
-    function handleKeyDown(e) {
-      if (e.key === 'Escape')     setSelected(null)
-      if (e.key === 'ArrowLeft')  prev()
-      if (e.key === 'ArrowRight') next()
-    }
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [selected])
-
   if (loading) {
     return <ImageBoardSkeleton />
   }
@@ -101,32 +63,6 @@ export default function ImageBoard({ images, containerWidth, title, desc }) {
   return (
     <div className='group-board'>
       <GroupHeader title={title} desc={desc} />
-      {selected !== null && imgArr[selected] && (
-        <div className='lightbox'>
-          <div className='image-container' onClick={e => e.stopPropagation()}>
-            <Image
-              src={imgArr[selected].src}
-              alt={`Image ${selected + 1}`}
-              fill
-              style={{ objectFit: 'contain' }}
-            />
-
-            <button className='lightbox-navi-btn left' onClick={ e => prev()}>‹</button>
-
-            <div className='lightbox-navibar'>
-              <div className='image-indicator'>
-                <p className='count'>{selected + 1}</p>
-                <p className=''>/</p>
-                <p className='count'>{imgArr.length}</p>
-              </div>
-            </div>
-
-            <button className='lightbox-navi-btn right' onClick={ e => next()}>›</button>
-
-            <button className='lightbox-btn close' onClick={ e => setSelected(null)}>×</button>
-          </div>
-        </div>
-      )}
 
       <div className='images-container'>
         {rows.map((row, r) => (

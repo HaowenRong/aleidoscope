@@ -27,7 +27,7 @@ export default function About() {
         </div>
 
         <div className='about-card'>
-          <p className='about-desc'>Last Update: 2026.08.21</p>
+          <p className='about-desc'>Last Update: 2026.08.27</p>
         </div>
 
         <div className='about-card'>
@@ -41,7 +41,7 @@ export default function About() {
         <div className='about-card'>
           <h1 className='about-title'>What is this?</h1>
           <p className='about-desc'>
-            I decided to create this site as I felt that other platforms for sharing photography were too restrictive, with things such as limited aspect ratios, heavy image compression, and generally unfavourable policies. Creating my own site gives me much more freedom over how I share my photography and allows me to express myself better.
+            I decided to create this site as I felt that other platforms for sharing photography were too restrictive, with things such as limited aspect ratios, heavy image compression, and generally unfavourable policies. Creating my own site gives me much more freedom over how I share my photography and allows me to better express myself.
           </p>
         </div>
 
@@ -70,11 +70,13 @@ export default function About() {
           </p>
           <br></br>
           <p className='about-desc'>
-            - Populate the site with more photos
+            - Populate the site with previous photos
             <br />
             - Write descriptions and notes for the albums, groups, and images (if I have anything I want to say about it)
             <br />
-            - Obtain a domain for the website
+            - Obtain a domain for the site
+            <br />
+            <del>- Implement an interactive map for displaying groups</del>
             <br />
           </p>
         </div>

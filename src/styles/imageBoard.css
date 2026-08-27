@@ -42,6 +42,7 @@
   width: 100svw;
   height: 100svh;
   padding: 0px;
+  padding-bottom: 70px;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(100px);
   display: flex;
@@ -52,7 +53,7 @@
 } .lightbox .image-container {
   position: relative;
   width: 95svw;
-  height: 80svh;
+  height: 89svh;
 } .lightbox .lightbox-navibar {
   position: fixed;
   display: flex;
