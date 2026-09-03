@@ -4,13 +4,23 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
-import { useRef, useEffect, useMemo, memo, useCallback } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { useRef, useEffect, useState, useMemo, memo, useCallback } from 'react';
+import { MapContainer, TileLayer, Marker, AttributionControl, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { photoMarker } from './photoMarker';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-function Map({ markerData, selectedGroups, selectGroups, focus }) {
+function MapInstanceCapture({ mapRef, onReady }) {
+  const map = useMap()
+
+  useEffect(() => {
+    mapRef.current = map
+    onReady()
+  }, [map, mapRef, onReady])
+}
+
+function Map({ markerData, selectedGroups, selectGroups }) {
+  const [mapReady, setMapReady] = useState(false)
   const mapRef = useRef(null)
 
   // fly to location of selected groups on groups change
@@ -21,12 +31,20 @@ function Map({ markerData, selectedGroups, selectGroups, focus }) {
     flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
   }, [selectedGroups])
 
-  // resize the map after the focus changes
+  // resize map on container resize
   useEffect(() => {
-    setTimeout(() => {
+    if (!mapReady) return
+    
+    const container = mapRef.current?.getContainer?.()
+    if (!container) return
+
+    const observer = new ResizeObserver(() => {
       mapRef.current?.invalidateSize()
-    }, 200)
-  }, [focus])
+    })
+    observer.observe(container)
+
+    return () => observer.disconnect()
+  }, [mapReady])
 
   const flyTo = useCallback((lat, long, zoom = 10, duration = 1.5) => {
     setTimeout(() => {
@@ -58,10 +76,9 @@ function Map({ markerData, selectedGroups, selectGroups, focus }) {
 
   return (
     <MapContainer
-      ref       = {mapRef}
       center    = {[35.0, 100.0]}
       zoom      = {3}
-      style     = {{ width: '100%', height: '100%' }}
+      style     = {{ width: '100%', height: '100%', zIndex: 0 }}
       minZoom   = {3}
       maxZoom   = {18}
       maxBounds = {[
@@ -71,11 +88,14 @@ function Map({ markerData, selectedGroups, selectGroups, focus }) {
       maxBoundsViscosity={1.0}
       worldCopyJump={true}
       zoomControl={false}
+      attributionControl={false}
     >
+      <MapInstanceCapture mapRef={mapRef} onReady={() => setMapReady(true)} />
       <TileLayer
         url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
         attribution='&copy; OpenStreetMap contributors &copy; CARTO'
       />
+      <AttributionControl position="topright" />
       <MarkerClusterGroup
         showCoverageOnHover={false}
         iconCreateFunction={(cluster) => {

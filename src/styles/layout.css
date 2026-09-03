@@ -157,7 +157,7 @@
 
 
 @media (max-width: 768px) {
-  .header{
+  .header {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-top: 1px solid rgba(128, 128, 128, 0.3);

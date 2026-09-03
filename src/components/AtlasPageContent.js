@@ -75,7 +75,9 @@ export default function AtlasPageContent() {
           onClick={() => setFocus('atlas-sidebar')}
         >
           {selectedGroups.length === 0 ? (
-            <p>Select a marker or cluster from the map to view its contents.</p>
+            <div className='tooltip'>
+              <h3 className='text'>Select a marker or cluster from the map to view its contents.</h3>
+            </div>
           ) : (
             <MetadataBar dataPoints={[
                 { title: 'Groups', data: selectedGroups.length },
