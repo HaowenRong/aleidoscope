@@ -19,7 +19,7 @@ export default async function Root() {
           <Timeline
             key        = {i}
             albumName  = {album.title}
-            albumDesc  = {album.description}
+            albumDesc  = {album.caption}
             albumCover = {`public/${album.url_name}/${album.cover_photo}`}
             albumDate  = {album.date}
             numPhotos  = {album.photo_count}

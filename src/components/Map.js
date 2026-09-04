@@ -69,7 +69,7 @@ function Map({ markerData, selectedGroups, selectGroups }) {
     return markerData.map((group) => ({
       group,
       icon: photoMarker({
-        coverPhoto: `public/${group.album_url_name}/${group.url_name}/${group.cover_photo}`,
+        coverPhoto: `public/${group.album_url_name}/${group.url_name}/_marker.jpg`,
       }),
     }))
   }, [markerData])

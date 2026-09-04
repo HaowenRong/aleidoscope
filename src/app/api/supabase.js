@@ -47,7 +47,8 @@ export async function getAlbum(urlName) {
   if (error) throw error
 
   const photo_count = data.groups.reduce(
-    (sum, group) => sum + group.images.length,
+    (sum, group) =>
+      sum + group.images.filter((img) => !img.file_path.includes('_marker')).length,
     0
   )
 

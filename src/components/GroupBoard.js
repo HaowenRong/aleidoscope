@@ -27,7 +27,9 @@ export default function GroupBoard({ groups }) {
   const groupsWithSrc = useMemo(
     () => groups.map(group => ({
       ...group,
-      images: group.images.map(image => ({
+      images: group.images
+      .filter(image => !image.file_path.includes('_marker'))
+      .map(image => ({
         ...image,
         src: getImageUrl(image.file_path)
       }))
