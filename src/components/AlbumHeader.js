@@ -13,7 +13,7 @@ export default function AlbumHeader({ title, desc, album, dataPoints, thumbnail 
         <MetadataBar
           dataPoints={dataPoints}
         />
-        <NavigationBtn icon='solar:earth-bold' href={{ pathname: '/atlas', query: { album: album } }}  />
+        <NavigationBtn icon='solar:earth-bold' href={{ pathname: '/atlas', query: { album: album } }} text='View on map'  />
       </div>
 
       <Thumbnail thumbnail={thumbnail} />

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import '../styles/banner.css'
+import NavigationBtn from './NavigationBtn'
 
 import { useState, useEffect } from 'react'
 
@@ -35,7 +36,10 @@ export default function Banner({ images = [], interval = 5000 }) {
     <div className='banner'>
       <div className='banner-track' style={{ transform: `translateX(-${current * 100}%)` }}>
         {images.map((src, i) => (
-          <div key={i} className='banner-slide'>
+          <div 
+            key={i}
+            className={`banner-slide${i === current ? ' active' : ''}`}
+          >
             <Image
               src={src}
               alt={`Slide ${i}`}
@@ -45,7 +49,12 @@ export default function Banner({ images = [], interval = 5000 }) {
               quality={75}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               loading='eager'
+              onClick={() => setCurrent(i)}
             />
+            <div className='link-section'>
+              <NavigationBtn icon='solar:album-bold' href={'/'} text='View album'  />
+              <NavigationBtn icon='solar:earth-bold' href={'/'} text='View on map'  />
+            </div>
           </div>
         ))}
       </div>

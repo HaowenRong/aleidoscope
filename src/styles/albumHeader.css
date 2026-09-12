@@ -21,14 +21,7 @@
 } .album-header .album-info .album-data {
   display: flex;
   gap: 8px;
-  font-size: 15px;
-} .album-header .album-info .album-data .separator {
-  all: unset;
-  display: flex;
-  align-items: start;
-  font-size: 40px;
-  line-height: 0.39;
-  user-select: none;
+  font-size: 16px;
 } .album-header .album-info .title {
   height: 100%;
   font-size: 36px;
@@ -75,7 +68,7 @@
   gap: 10px;
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: var(--radius2);
   justify-content: space-evenly;
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(128, 128, 128, 0.3);
@@ -121,6 +114,6 @@
   }
 
   .metadata-bar {
-    border-radius: 10px;
+    border-radius: var(--radius2);
   }
 }

@@ -4,7 +4,7 @@ import '../styles/layout.css'
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
 
-export default function NavigationBtn({icon, href}) {
+export default function NavigationBtn({icon, href, text}) {
 
   return (
     <Link
@@ -12,7 +12,7 @@ export default function NavigationBtn({icon, href}) {
       className='navigationBtn'
     >
       <Icon icon={icon} className='icon'  />
-      <span>View on map </span>
+      <span>{text}</span>
     </Link>
   )
 }

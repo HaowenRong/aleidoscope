@@ -14,7 +14,6 @@ export default async function Root() {
     <main className='main'>
       <Banner images={bannerImages} />
       <div className='content timelineContent'>
-        <div className='timeline' />
         {albumData.map((album, i) => (
           <Timeline
             key        = {i}
@@ -27,6 +26,7 @@ export default async function Root() {
             alignment  = {i % 2 === 0 ? 'left' : 'right'}
           />
         ))}
+        <div className='timeline' />
       </div>
     </main>
   )

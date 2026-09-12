@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  border-radius: 10px;
+  border-radius: var(--radius2);
   overflow: hidden;
 } .group-board .images-container .image-row {
   display: flex;

@@ -42,9 +42,6 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
       <div className='dot' />
 
       <div className={'info-section'}>
-        <div className={'album-data'}>
-          {year}.{month}.{day}
-        </div>
       </div>
     </Link>
   )
