@@ -6,21 +6,21 @@ import NavigationBtn from './NavigationBtn'
 
 import { useState, useEffect } from 'react'
 
-export default function Banner({ images = [], interval = 5000 }) {
+export default function Banner({ banners = [], interval = 5000 }) {
   const [current, setCurrent] = useState(0)
 
   // move slide
-  const prev = () => setCurrent(current === 0 ? images.length - 1 : current - 1)
-  const next = () => setCurrent(current === images.length - 1 ? 0 : current + 1)
+  const prev = () => setCurrent(current === 0 ? banners.length - 1 : current - 1)
+  const next = () => setCurrent(current === banners.length - 1 ? 0 : current + 1)
 
   // auto slide
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent(prev => (prev === images.length - 1 ? 0 : prev + 1))
+      setCurrent(prev => (prev === banners.length - 1 ? 0 : prev + 1))
     }, interval)
 
     return () => clearInterval(timer)
-  }, [current, images.length, interval])
+  }, [current, banners.length, interval])
 
   // arrow key slide
   useEffect(() => {
@@ -35,13 +35,13 @@ export default function Banner({ images = [], interval = 5000 }) {
   return (
     <div className='banner'>
       <div className='banner-track' style={{ transform: `translateX(-${current * 100}%)` }}>
-        {images.map((src, i) => (
+        {banners.map((banner, i) => (
           <div 
             key={i}
             className={`banner-slide${i === current ? ' active' : ''}`}
           >
             <Image
-              src={src}
+              src={banner.publicUrl}
               alt={`Slide ${i}`}
               fill
               sizes="100vw"
@@ -52,15 +52,27 @@ export default function Banner({ images = [], interval = 5000 }) {
               onClick={() => setCurrent(i)}
             />
             <div className='link-section'>
-              <NavigationBtn icon='solar:album-bold' href={'/'} text='View album'  />
-              <NavigationBtn icon='solar:earth-bold' href={'/'} text='View on map'  />
+              {banner.album && (
+                <>
+                  <NavigationBtn
+                    icon='solar:album-bold'
+                    href={{ pathname: `/album/${banner.album}` }}
+                    text='View album'
+                  />
+                  <NavigationBtn
+                    icon='solar:earth-bold'
+                    href={{ pathname: '/atlas', query: { album: banner.album } }}
+                    text='View on map'
+                  />
+                </>
+              )}
             </div>
           </div>
         ))}
       </div>
 
       <div className='banner-dots'>
-        {images.map((_, i) => (
+        {banners.map((_, i) => (
           <button
             key={i}
             className={`banner-dot ${i === current ? 'active' : ''}`}
