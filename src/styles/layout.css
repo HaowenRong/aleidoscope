@@ -158,8 +158,8 @@
 
 @media (max-width: 768px) {
   .header {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: var(--radius1);
+    border-top-right-radius: var(--radius1);
     border-top: 1px solid rgba(128, 128, 128, 0.3);
     border-bottom: none;
     padding: 0;

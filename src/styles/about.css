@@ -22,9 +22,9 @@
   display: flex;
   position: relative;
   margin-bottom: 10px;
-} .image-header .img {
   width: 100%;
-  height: auto;
+  height: 60svh;
+} .image-header .img {
   display: block;
   border-radius: var(--radius1);
 }

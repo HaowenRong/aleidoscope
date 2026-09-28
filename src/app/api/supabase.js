@@ -105,13 +105,16 @@ export async function getGroupWithImages(groupId) {
 export async function getBanners() {
   const { data, error } = await supabase
     .from('banners')
-    .select('file_path')
+    .select('*')
 
   if (error) throw error
 
-  return data.map(
-    (banner) => supabase.storage.from('albums').getPublicUrl(banner.file_path).data.publicUrl
-  )
+  return data.map((banner) => ({
+    ...banner,
+    publicUrl: supabase.storage
+      .from('albums')
+      .getPublicUrl(banner.file_path).data.publicUrl,
+  }))
 }
 
 

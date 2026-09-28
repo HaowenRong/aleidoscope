@@ -8,11 +8,11 @@ import { getAlbums, getBanners } from './api/supabase';
 export default async function Root() {
 
   const albumData    = await getAlbums()
-  const bannerImages = await getBanners()
+  const banners = await getBanners()
 
   return (
     <main className='main'>
-      <Banner images={bannerImages} />
+      <Banner banners={banners} />
       <div className='content timelineContent'>
         {albumData.map((album, i) => (
           <Timeline

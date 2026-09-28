@@ -74,6 +74,8 @@ function Map({ markerData, selectedGroups, selectGroups }) {
     }))
   }, [markerData])
 
+  const tileUrl = `https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_TILE_KEY}`
+
   return (
     <MapContainer
       center    = {[35.0, 100.0]}
@@ -91,8 +93,9 @@ function Map({ markerData, selectedGroups, selectGroups }) {
       attributionControl={false}
     >
       <MapInstanceCapture mapRef={mapRef} onReady={() => setMapReady(true)} />
+        
       <TileLayer
-        url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+        url={tileUrl}
         attribution='&copy; OpenStreetMap contributors &copy; CARTO'
       />
       <AttributionControl position="topright" />
