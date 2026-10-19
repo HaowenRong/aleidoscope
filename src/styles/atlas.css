@@ -2,8 +2,9 @@
   display: flex;
   gap: 10px;
   width: 100vw;
-  height: calc(100svh - 100px);
+  height: calc(100svh - var(--header-height));
   overflow: hidden;
+  transition: height 0.3s ease;
 } .atlas-container .atlas {
   position: relative;
   width: 50%;

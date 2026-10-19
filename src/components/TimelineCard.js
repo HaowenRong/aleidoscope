@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import '../styles/timeline.css'
+import '../styles/poster.css'
 import { getImageUrl } from '@/app/api/supabase'
 
-export default async function Timeline({ albumName, albumDesc, albumCover, 
+export default async function TimelineCard({ albumName, albumDesc, albumCover, 
                                          albumDate, numPhotos, urlName,
                                          alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
@@ -41,8 +42,7 @@ export default async function Timeline({ albumName, albumDesc, albumCover,
 
       <div className='dot' />
 
-      <div className={'info-section'}>
-      </div>
+      <div className={'info-section'}  />
     </Link>
   )
 }

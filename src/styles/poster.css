@@ -1,0 +1,73 @@
+
+.poster {
+  --poster-padding: 3cqw;
+
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  overflow: hidden;
+  border-radius: var(--radius2);
+  height: 100%;
+  width: 100%;
+  container-type: inline-size;
+  flex-shrink: 1;
+} .poster img {
+  max-width: 100%;
+  width: auto;
+  height: 100%;
+} .poster .overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 50% at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  padding-left: var(--poster-padding);
+  padding-bottom: var(--poster-padding);
+  font-weight: bolder;
+  color: rgba(255, 255, 255);
+} .poster .overlay .title {
+  font-size: 12cqw;
+  text-align: end;
+  padding-right: var(--poster-padding);
+} .poster .overlay .title-side {
+  height: 100%;
+  font-size: 12cqw;
+  text-align: start;
+  writing-mode: vertical-rl;
+} .poster .overlay .footer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+} .poster .overlay .footer .desc {
+  width: 55%;
+  font-size: 5cqw;
+  padding-bottom: 1cqw;
+  justify-content: end;
+  margin-top: auto;
+} .poster .overlay .footer .date {
+  padding-right: var(--poster-padding);
+  font-size: 8cqw;
+  margin-top: auto;
+}
+
+
+@media (max-width: 768px) {
+  .poster {
+    max-width: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  } .poster img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 5px;
+  }
+}

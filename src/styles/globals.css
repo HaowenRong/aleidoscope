@@ -4,6 +4,9 @@
 
   --radius1: 20px;
   --radius2: 10px;
+
+  --header-height: 6rem;
+  --title-block-radius: 0.25rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,10 +35,12 @@ body {
   background: var(--background);
   font-family: var(--font-manrope), Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
-  padding-top: 100px;
+  padding-top: var(--header-height);
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  transition: padding 0.3s ease;
 }
 
 button:focus:not(:focus-visible) {
