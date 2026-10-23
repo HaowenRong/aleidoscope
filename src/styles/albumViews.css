@@ -1,0 +1,70 @@
+
+.timeline-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  padding-top: 1rem;
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(18rem, calc(50% - 0.5rem)), 1fr)
+  );
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+
+.options-section {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.view-switcher {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: fit-content;
+  padding: 10px;
+  border-radius: var(--radius2);
+} .view-switcher .button {
+  all: unset;
+  display: flex;
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: var(--primary-color);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    border 0.2s ease;
+} .view-switcher .button:hover {
+  border: 1px solid rgba(128, 128, 128, 1);
+  transform: scale(1.05);
+} .view-switcher .button[aria-pressed='true'] {
+  color: crimson;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+} .view-switcher .button[aria-pressed='true']:hover {
+  transform: none;
+  cursor: auto;
+} .view-switcher .button svg {
+  width:  2.5rem;
+  height: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .timeline-view {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+  }
+
+  .grid-view {
+    gap: 0.5rem;
+  }
+}

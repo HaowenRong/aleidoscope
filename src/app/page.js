@@ -1,32 +1,18 @@
 import '../styles/globals.css'
 import '../styles/layout.css'
-import '../styles/timeline.css'
 import Banner from '@/components/Banner';
-import Timeline from '@/components/TimelineCard';
+import AlbumsView from '@/components/AlbumViews';
 import { getAlbums, getBanners } from './api/supabase';
 
 export default async function Root() {
 
-  const albumData    = await getAlbums()
-  const banners = await getBanners()
+  const [albums, banners] = await Promise.all([getAlbums(), getBanners()])
 
   return (
     <main className='main'>
       <Banner banners={banners} />
-      <div className='content timelineContent'>
-        {albumData.map((album, i) => (
-          <Timeline
-            key        = {i}
-            albumName  = {album.title}
-            albumDesc  = {album.caption}
-            albumCover = {`public/${album.url_name}/${album.cover_photo}`}
-            albumDate  = {album.date}
-            numPhotos  = {album.photo_count}
-            urlName    = {album.url_name}
-            alignment  = {i % 2 === 0 ? 'left' : 'right'}
-          />
-        ))}
-        <div className='timeline' />
+      <div className='content'>
+        <AlbumsView albums={albums}  />
       </div>
     </main>
   )
