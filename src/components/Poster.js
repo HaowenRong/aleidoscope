@@ -3,7 +3,7 @@ import Image from 'next/image'
 import '../styles/timeline.css'
 import { getImageUrl } from '@/app/api/supabase'
 
-export default async function Poster({ albumName, albumDesc, albumCover, 
+export default function Poster({ albumName, albumDesc, albumCover, 
                                        albumDate, numPhotos, urlName }) {
 
   const albumCoverUrl = getImageUrl(albumCover)

@@ -4,7 +4,7 @@ import '../styles/timeline.css'
 import '../styles/poster.css'
 import { getImageUrl } from '@/app/api/supabase'
 
-export default async function TimelineCard({ albumName, albumDesc, albumCover, 
+export default function TimelineCard({ albumName, albumDesc, albumCover, 
                                          albumDate, numPhotos, urlName,
                                          alignment='left' }) {
   const align = alignment === 'right' ? 'right' : ''
