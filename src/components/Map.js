@@ -78,7 +78,7 @@ function Map({ markerData, selectedGroups, selectGroups }) {
 
   return (
     <MapContainer
-      center    = {[35.0, 100.0]}
+      center    = {[35.0, 65.0]}
       zoom      = {3}
       style     = {{ width: '100%', height: '100%', zIndex: 0 }}
       minZoom   = {3}

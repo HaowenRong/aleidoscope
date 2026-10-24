@@ -1,30 +1,46 @@
 'use client'
 
 import '../styles/layout.css'
-import '../styles/timeline.css'
+import '../styles/albumViews.css'
 import { Icon } from '@iconify/react'
 
-export default function ViewSwitcher({ view, setView, setSort }) {
-
-  const options = [
-    { value: 'timeline', title: 'Timeline View', icon: 'mingcute:timeline-fill'},
-    { value: 'grid',     title: 'Grid View',     icon: 'mingcute:grid-fill'    }
-  ]
+export default function ViewSwitcher({ view, viewOptions, setView,
+                                       sort, sortOptions, setSort }) {
 
   return (
     <div className='view-switcher'>
-      {options.map(option => (
-        <button
-          key          = {option.value}
-          type         = 'button'
-          title        = 'Grid view'
-          className    = {`button ${view === option.value ? 'active' : ''}`}
-          aria-pressed = {view === option.value}
-          onClick      = {() => setView(option.value)}
-        >
-          <Icon icon={option.icon} />
-        </button>
-      ))}
+      <select
+        className = 'sort-button'
+        title     = 'Sort Albums'
+        value     = {sort}
+        onChange  = {e => setSort(e.target.value)}
+      >
+        {sortOptions.map(sortOption => (
+          <option
+            key={sortOption.value}
+            value={sortOption.value}
+            title={sortOption.value}
+          >
+            {sortOption.title}
+          </option>
+        ))}
+      </select>
+      <div className='separator-line' />
+      <div className='views-container'>
+        {viewOptions.map(viewOption => (
+          <button
+            key          = {viewOption.value}
+            type         = 'button'
+            title        = {viewOption.title}
+            className    = {`button ${view === viewOption.value ? 'active' : ''}`}
+            aria-pressed = {view === viewOption.value}
+            onClick      = {() => setView(viewOption.value)}
+          >
+            <Icon icon={viewOption.icon} />
+          </button>
+        ))}
+      </div>
+      
     </div>
   )
 }

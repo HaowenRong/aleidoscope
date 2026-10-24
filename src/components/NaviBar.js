@@ -36,7 +36,7 @@ export default function NaviBar() {
         <ul className='navi-list'>
           <li>
             <Link href='/' className={`button ${pathname === '/' ? 'active' : ''}`} onClick={() => setOpen(false)}>
-              <span className='label'>Timeline</span>
+              <span className='label'>Albums</span>
             </Link>
           </li>
           <li>

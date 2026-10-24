@@ -27,7 +27,7 @@ export default function About() {
         </div>
 
         <div className='about-card'>
-          <p className='about-desc'>Last Update: 2026.08.27</p>
+          <p className='about-desc'>Last Update: 2026.10.24</p>
         </div>
 
         <div className='about-card'>
@@ -70,13 +70,15 @@ export default function About() {
           </p>
           <br></br>
           <p className='about-desc'>
-            - Populate the site with previous photos
-            <br />
-            - Write descriptions and notes for the albums, groups, and images (if I have anything I want to say about it)
-            <br />
             - Obtain a domain for the site
             <br />
+            - Populate the site with previous photos
+            <br />
+            - Write descriptions and notes for certain albums, groups, and images
+            <br />
             <del>- Implement an interactive map for displaying groups</del>
+            <br />
+            <del>- Provide alternative ways of viewing albums</del>
             <br />
           </p>
         </div>
