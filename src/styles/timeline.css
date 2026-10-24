@@ -90,6 +90,10 @@
   flex-direction: row-reverse;
 }
 
+.timeline-frame .poster:hover {
+  transform: none;
+}
+
 @media (max-width: 768px) {
   .timeline {
     position: absolute;

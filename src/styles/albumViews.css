@@ -28,14 +28,17 @@
   flex-direction: row;
   gap: 10px;
   width: fit-content;
-  padding: 10px;
   border-radius: var(--radius2);
+} .views-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
 } .view-switcher .button {
   all: unset;
   display: flex;
   border-radius: 10px;
   padding: 0.5rem;
-  color: var(--primary-color);
+  color: var(--foreground);
   border: 1px solid rgba(128, 128, 128, 0.3);
   cursor: pointer;
 
@@ -56,12 +59,107 @@
   height: 2.5rem;
 }
 
+.separator-line {
+  width: 2px;
+  align-self: stretch;
+  margin: 0.5rem;
+  border-radius: 1rem;
+  background-color: rgba(128, 128, 128, 0.75);
+}
+
+.sort-button,
+.sort-button::picker(select) {
+  appearance: base-select;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: var(--foreground);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    border 0.2s ease;
+} .sort-button:hover,
+.sort-button:open {
+  background-color: inherit;
+  border: 1px solid rgba(128, 128, 128, 1);
+  transform: scale(1.05);
+}
+
+.sort-button::picker-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--foreground);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M12 19V4M6.343 14L12 19.657L17.657 14'/%3E%3C/svg%3E");
+  transition: 0.2s rotate;
+} .sort-button:open::picker-icon {
+  rotate: 180deg;
+}
+
+.sort-button::picker(select) {
+  margin-top: 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 1rem;
+  top: calc(anchor(bottom) + 1px);
+  background-color: rgba(255, 255, 255, 0.75);
+  opacity: 0;
+  transition: all 0.2s ease;
+} .sort-button:open::picker(select) {
+  opacity: 1;
+}
+@starting-style {
+  .sort-button:open::picker(select) {
+    opacity: 0;
+  }
+}
+
+.sort-button option {
+  display: flex;
+  color: var(--foreground);
+  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+  transition: all 0.2s ease;
+} .sort-button option:last-of-type {
+  border-bottom: none;
+} .sort-button option:focus-visible {
+  outline: none;
+} .sort-button option:hover,
+.sort-button option:focus {
+  background-color: rgba(225, 225, 225, 0.5);
+  padding-left: 1.2rem;
+} .sort-button option:checked {
+  color: crimson;
+  background-color: var(--background);
+} .sort-button option::checkmark {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .timeline-view {
     width: 100%;
     padding-left: 15px;
     padding-right: 10px;
     padding-bottom: 0px;
+  }
+
+  .view-switcher {
+    display: flex;
+  }
+
+  .separator-line {
+    display: none;
   }
 
   .grid-view {

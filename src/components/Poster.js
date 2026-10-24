@@ -13,7 +13,7 @@ export default function Poster({ albumName, albumDesc, albumCover,
   const albumNameRest = rest.join(" ");
 
   return (
-    <div className='poster'>
+    <Link href={`/album/${urlName}`} className={'poster'}>
       {albumCover && (
         <>
           <Image
@@ -34,6 +34,6 @@ export default function Poster({ albumName, albumDesc, albumCover,
           </div>
         </>
       )}
-    </div>
+    </Link>
   )
 }
