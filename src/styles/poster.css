@@ -17,9 +17,6 @@
 } .poster:hover {
   transform: scale(1.05);
 } .poster img {
-  max-width: 100%;
-  width: auto;
-  height: 100%;
   object-fit: cover;
   object-position: center;
 } .poster .overlay {

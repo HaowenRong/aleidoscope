@@ -79,6 +79,7 @@
 
 @media (max-width: 768px) {
   .banner {
+    --banner-animation: 0.5s;
     height: calc(70svh);
     padding-left: 10svw;
     padding-right: 10svw;

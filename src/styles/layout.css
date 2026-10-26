@@ -33,7 +33,11 @@
   padding-right: 80px;
   box-sizing: border-box;
   user-select: none;
-} .navi * {
+  transition: all 0.5s ease;
+} .navi.wide {
+  padding-left:  0px;
+  padding-right: 0px;
+}.navi * {
   pointer-events: auto;
 } .navi .navi-list {
   all: unset;

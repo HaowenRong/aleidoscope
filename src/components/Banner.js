@@ -46,7 +46,7 @@ export default function Banner({ banners = [], interval = 5000 }) {
               fill
               sizes="100vw"
               priority={i === 0}
-              quality={75}
+              quality={100}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               loading='eager'
               onClick={() => setCurrent(i)}

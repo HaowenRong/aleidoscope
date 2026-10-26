@@ -4,7 +4,7 @@ import '../styles/timeline.css'
 import { getImageUrl } from '@/app/api/supabase'
 
 export default function Poster({ albumName, albumDesc, albumCover, 
-                                       albumDate, numPhotos, urlName }) {
+                                 albumDate, numPhotos, urlName }) {
 
   const albumCoverUrl = getImageUrl(albumCover)
 
@@ -18,10 +18,10 @@ export default function Poster({ albumName, albumDesc, albumCover,
         <>
           <Image
             src     = {albumCoverUrl}
-            alt     = {albumCoverUrl}
-            width   = {1000}
-            height  = {1000}
-            style   = {{ borderRadius: '5px', width: '100%', height: 'auto', display: 'block' }}
+            alt     = {albumName ?? 'Album cover'}
+            fill
+            sizes   = '(max-width: 768px) 100vw, 33vw'
+            style   = {{ objectFit: 'cover', borderRadius: '5px'}}
             loading = 'eager'
           />
           <div className='overlay'>

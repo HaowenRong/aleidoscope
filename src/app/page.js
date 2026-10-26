@@ -10,7 +10,7 @@ export default async function Root() {
 
   return (
     <main className='main'>
-      <Banner banners={banners} />
+      <Banner banners={banners} interval={8000} />
       <div className='content'>
         <AlbumsView albums={albums}  />
       </div>
