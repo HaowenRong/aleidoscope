@@ -17,7 +17,7 @@
 }
 
 html {
-  overflow-y: scroll;
+  scrollbar-color: rgba(128, 128, 128, 0.8) transparent;
 }
 
 body {
@@ -41,6 +41,8 @@ body {
   flex-direction: column;
 
   transition: padding 0.3s ease;
+} .main.atlas {
+  padding-top: 0px;
 }
 
 button:focus:not(:focus-visible) {

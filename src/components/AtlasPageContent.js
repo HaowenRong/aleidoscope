@@ -60,7 +60,7 @@ export default function AtlasPageContent() {
   }, [])
 
   return (
-    <main className='main'>
+    <main className='main atlas'>
       <div className='atlas-container'>
         <div 
           className={`atlas ${focus === 'atlas' ? 'expand' : 'compress'}`}

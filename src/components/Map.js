@@ -27,7 +27,10 @@ function Map({ markerData, selectedGroups, selectGroups }) {
   useEffect(() => {
     if (selectedGroups.length < 1) return
 
-    const groupCenter = calcGroupCenter(selectedGroups)
+    // adjust offset for mobiles
+    const isMobile    = window.innerWidth < 768
+    const offset      = isMobile ? { x: 0, y: 0 } : { x: 0.25, y: 0 }
+    const groupCenter = calcGroupCenter(selectedGroups, offset)
     flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
   }, [selectedGroups])
 
@@ -54,15 +57,18 @@ function Map({ markerData, selectedGroups, selectGroups }) {
     }, 200)
   }, [])
 
-  const calcGroupCenter = useCallback((groups) => {
+  const calcGroupCenter = useCallback((groups, offset = { x: 0.25, y: 0 }) => {
+    const map    = mapRef.current
     const bounds = L.latLngBounds(groups.map(m => [m.lat, m.long]))
-    const center = bounds.getCenter()
-    const zoom   = mapRef.current.getBoundsZoom(bounds.pad(0.2), false)
+    const zoom   = map.getBoundsZoom(bounds.pad(0.8), false)
 
-    return {
-      center: center,
-      zoom:   zoom
-    }
+    // offset map center anchor
+    const size     = map.getSize()
+    const centerP  = map.project(bounds.getCenter(), zoom)
+    const shiftedP = centerP.add([size.x * offset.x, size.y * offset.y])
+    const center   = map.unproject(shiftedP, zoom)
+
+    return { center, zoom }
   }, [])
 
   const markers = useMemo(() => {
@@ -78,7 +84,7 @@ function Map({ markerData, selectedGroups, selectGroups }) {
 
   return (
     <MapContainer
-      center    = {[35.0, 65.0]}
+      center    = {[35.0, 100.0]}
       zoom      = {3}
       style     = {{ width: '100%', height: '100%', zIndex: 0 }}
       minZoom   = {3}
