@@ -8,15 +8,29 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import Poster from '@/components/Poster';
 import { useState, useMemo } from 'react';
 
-export default function AlbumsView({ albums }) {
-  const [view, setView] = useState('grid')
+export default function AlbumsView({ albums, defaultView = 'grid', defaultSort = 'newest' }) {
+  // views
+  const [view, setView] = useState(defaultView)
 
+  // update cookie for view
+  function changeView(newView) {
+    setView(newView)
+    document.cookie = `view=${newView}; path=/; max-age=2592000`
+  }
+
+  // sorts
   const viewOptions = [
     { value: 'timeline', title: 'Timeline View', icon: 'mingcute:timeline-fill'},
     { value: 'grid',     title: 'Grid View',     icon: 'mingcute:grid-fill'    }
   ]
 
-  const [sort, setSort] = useState('newest')
+  const [sort, setSort] = useState(defaultSort)
+
+  // update cookie for sort
+  function changeSort(newSort) {
+    setSort(newSort)
+    document.cookie = `sort=${newSort}; path=/; max-age=2592000`
+  }
   
   const sortOptions = [
     { value: 'newest', title: 'Newest First'},
@@ -40,7 +54,10 @@ export default function AlbumsView({ albums }) {
   return (
     <div>
       <div className='options-section'>
-        <ViewSwitcher view={view} viewOptions={viewOptions} setView={setView} sortOptions={sortOptions} setSort={setSort}  />
+        <ViewSwitcher 
+          view={view} viewOptions={viewOptions} setView={changeView}
+          sort={sort} sortOptions={sortOptions} setSort={changeSort}
+        />
       </div>
       {view === 'grid' ? (
         <div className='grid-view'>
