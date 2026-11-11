@@ -41,6 +41,8 @@
   color: var(--foreground);
   border: 1px solid rgba(128, 128, 128, 0.3);
   cursor: pointer;
+  width:  2rem;
+  height: 2rem;
 
   transition:
     transform 0.1s ease,
@@ -113,6 +115,7 @@
   border-radius: 1rem;
   top: calc(anchor(bottom) + 1px);
   background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(5px);
   opacity: 0;
   transition: all 0.2s ease;
 } .sort-button:open::picker(select) {

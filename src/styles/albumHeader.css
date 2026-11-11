@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 70%;
   gap: 10px;
 } .album-header .album-info .album-data {
@@ -23,7 +24,6 @@
   gap: 8px;
   font-size: 16px;
 } .album-header .album-info .title {
-  height: 100%;
   font-size: 36px;
   font-weight: 800;
 } .album-header .album-info .desc {
