@@ -33,7 +33,7 @@ export default function ImageBoard({ images, containerWidth, title, desc, showLi
   // build rows based on image dimentions
   function buildRows(images) {
     const targetHeight = 520
-    const gap          = 4
+    const gap          = 5
 
     const builtRows = []
     let row      = []
@@ -44,9 +44,14 @@ export default function ImageBoard({ images, containerWidth, title, desc, showLi
       rowRatio += item.ratio
 
       const rowWidth = rowRatio * targetHeight + gap * (row.length - 1)
+      const isLast   = i === images.length - 1
 
-      if (rowWidth >= containerWidth || i === images.length - 1) {
-        const height = (containerWidth - gap * (row.length - 1)) / rowRatio
+      if (rowWidth >= containerWidth || isLast) {
+        const isFull = rowWidth >= containerWidth
+        const height = isFull
+          ? (containerWidth - gap * (row.length - 1)) / rowRatio
+          : targetHeight
+
         builtRows.push(row.map(r => ({ ...r, width: r.ratio * height, height })))
         row      = []
         rowRatio = 0

@@ -68,24 +68,28 @@ export default function AtlasPageContent() {
           onClick={() => setFocus('atlas')}
         >
           <Map markerData={allGroups} selectedGroups={selectedGroups} selectGroups={selectAndFocus} focus={focus} />
+          <div className='focus-overlay' />
         </div>
         <div
           className={`atlas-sidebar ${focus === 'atlas-sidebar' ? 'expand' : 'compress'}`}
           tabIndex='0'
           onClick={() => setFocus('atlas-sidebar')}
         >
-          {selectedGroups.length === 0 ? (
-            <div className='tooltip'>
-              <h3 className='text'>Select a marker or cluster from the map to view its contents.</h3>
-            </div>
-          ) : (
-            <MetadataBar dataPoints={[
-                { title: 'Groups', data: selectedGroups.length },
-                { title: 'Photos', data: selectedImages }
-              ]}
-            />
-          )}
-          <GroupBoard groups={selectedGroups}  />
+          <div className='sidebar-scroll'>
+            {selectedGroups.length === 0 ? (
+              <div className='tooltip'>
+                <h3 className='text'>Select a marker or cluster from the map to view its contents.</h3>
+              </div>
+            ) : (
+              <MetadataBar dataPoints={[
+                  { title: 'Groups', data: selectedGroups.length },
+                  { title: 'Photos', data: selectedImages }
+                ]}
+              />
+            )}
+            <GroupBoard groups={selectedGroups} />
+          </div>
+          <div className='focus-overlay' />
         </div>
       </div>
     </main>
