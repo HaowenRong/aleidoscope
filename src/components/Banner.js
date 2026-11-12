@@ -57,12 +57,12 @@ export default function Banner({ banners = [], interval = 5000 }) {
                   <NavigationBtn
                     icon='solar:album-bold'
                     href={{ pathname: `/album/${banner.album}` }}
-                    text='View album'
+                    text='View Album'
                   />
                   <NavigationBtn
                     icon='solar:earth-bold'
                     href={{ pathname: '/atlas', query: { album: banner.album } }}
-                    text='View on map'
+                    text='View on Map'
                   />
                 </>
               )}

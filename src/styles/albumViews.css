@@ -41,8 +41,8 @@
   color: var(--foreground);
   border: 1px solid rgba(128, 128, 128, 0.3);
   cursor: pointer;
-  width:  2rem;
-  height: 2rem;
+  width:  var(--navigation-icon);
+  height: var(--navigation-icon);
 
   transition:
     transform 0.1s ease,
@@ -57,8 +57,8 @@
   transform: none;
   cursor: auto;
 } .view-switcher .button svg {
-  width:  2rem;
-  height: 2rem;
+  width:  var(--navigation-icon);
+  height: var(--navigation-icon);
 }
 
 .separator-line {
@@ -83,7 +83,7 @@
   border: 1px solid rgba(128, 128, 128, 0.3);
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-  font-size: 1.2rem;
+  font-size: var(--navigation-btn);
   font-weight: bold;
   line-height: 1;
   text-align: center;

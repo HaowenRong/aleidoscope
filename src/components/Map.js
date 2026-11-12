@@ -17,27 +17,37 @@ function MapInstanceCapture({ mapRef, onReady }) {
     mapRef.current = map
     onReady()
   }, [map, mapRef, onReady])
+
+  return null
 }
 
 function Map({ markerData, selectedGroups, selectGroups }) {
   const [mapReady, setMapReady] = useState(false)
   const mapRef = useRef(null)
 
-  // fly to location of selected groups on groups change
+  const isMobile = window.innerWidth < 768
+
+  const initialCenter = useMemo(
+    () => (isMobile ? [50, 12.5] : [35, 100]),
+    [isMobile]
+  )
+
+  // fly to location of selected groupsets on groups change
   useEffect(() => {
-    if (selectedGroups.length < 1) return
+    if (!mapReady || selectedGroups.length < 1) return
 
     // adjust offset for mobiles
-    const isMobile    = window.innerWidth < 768
     const offset      = isMobile ? { x: 0, y: 0 } : { x: 0.25, y: 0 }
     const groupCenter = calcGroupCenter(selectedGroups, offset)
+
+    if (!groupCenter) return
+
     flyTo(groupCenter.center.lat, groupCenter.center.lng, groupCenter.zoom)
-  }, [selectedGroups])
+  }, [selectedGroups, mapReady])
 
   // resize map on container resize
   useEffect(() => {
     if (!mapReady) return
-    
     const container = mapRef.current?.getContainer?.()
     if (!container) return
 
@@ -51,16 +61,20 @@ function Map({ markerData, selectedGroups, selectGroups }) {
 
   const flyTo = useCallback((lat, long, zoom = 10, duration = 1.5) => {
     setTimeout(() => {
-      mapRef.current.flyTo([lat, long], zoom, {
+      mapRef.current?.flyTo([lat, long], zoom, {
         duration: duration,
       })
     }, 200)
   }, [])
 
   const calcGroupCenter = useCallback((groups, offset = { x: 0.25, y: 0 }) => {
-    const map    = mapRef.current
+    const padding  = isMobile ? 0.1 : 0.8
+
+    const map = mapRef.current
+    if (!map) return null
+
     const bounds = L.latLngBounds(groups.map(m => [m.lat, m.long]))
-    const zoom   = map.getBoundsZoom(bounds.pad(0.8), false)
+    const zoom   = map.getBoundsZoom(bounds.pad(padding), false)
 
     // offset map center anchor
     const size     = map.getSize()
@@ -84,7 +98,7 @@ function Map({ markerData, selectedGroups, selectGroups }) {
 
   return (
     <MapContainer
-      center    = {[35.0, 100.0]}
+      center    = {initialCenter}
       zoom      = {3}
       style     = {{ width: '100%', height: '100%', zIndex: 0 }}
       minZoom   = {3}

@@ -13,9 +13,10 @@
   container-type: inline-size;
   aspect-ratio: 4 / 5;
 
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
 } .poster:hover {
-  transform: scale(1.05);
+  transform: scale(1.025);
+  box-shadow: 6px 6px 0px 0px rgba(23, 23, 23, 0.7);
 } .poster img {
   object-fit: cover;
   object-position: center;
@@ -67,6 +68,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }  .poster:hover {
+    box-shadow: none;
   } .poster img {
     width: 100%;
     height: auto;

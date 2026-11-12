@@ -7,6 +7,9 @@
 
   --header-height: 6rem;
   --title-block-radius: 0.25rem;
+
+  --navigation-btn: 1.2rem;
+  --navigation-icon: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,7 +45,7 @@ body {
 
   transition: padding 0.3s ease;
 } .main.atlas {
-  padding-top: 0px;
+  padding: 0px;
 }
 
 button:focus:not(:focus-visible) {
@@ -78,6 +81,11 @@ a {
 }
 
 @media (max-width: 768px) {
+  :root{
+    --navigation-btn: 1rem;
+    --navigation-icon: 1.5rem;
+  }
+
   .main {
     padding-top: 0;
     padding-bottom: 100px;
